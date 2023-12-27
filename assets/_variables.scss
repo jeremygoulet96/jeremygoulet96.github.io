@@ -1,0 +1,24 @@
+/****** VARIABLES ******/
+
+$font: "neue-montreal", "PP Neue Montreal", Helvetica, Arial, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+
+/****** PADDING ******/
+
+$padding-sm-top: 3rem;
+$padding-sm-side: 24px;
+$padding-lg-top: 6rem;
+$padding-lg-side: 3rem;
+
+/****** MEDIA QUERIES ******/
+
+$mq-sm: 640px; // Mobile phone
+$mq-md: 768px; // iPad 11" Portrait
+$mq-lg: 1024px; // iPad 11" Landscape
+$mq-xl: 1280px; // Small desktop
+$mq-2xl: 1536px; // Big desktop
+$mq-3xl: 2400px; // Giga desktop
+
+$font-regular: 400;
+$font-semibold: 600;
+$font-bold: 700;

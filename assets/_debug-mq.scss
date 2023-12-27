@@ -1,0 +1,95 @@
+.media {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 2rem;
+    z-index: 999;
+    backdrop-filter: blur(20px);
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba($white, 0.5);
+    font-weight: $font-semibold;
+    box-shadow: 0px 10px 20px 0px rgba($black, 0.2);
+}
+
+#xsmall {
+    display: inline;
+}
+
+#sm,
+#md,
+#lg,
+#xl,
+#twoxl {
+    display: none;
+}
+
+@media (min-width: $mq-sm) {
+    #sm {
+        display: inline;
+    }
+
+    #xsmall,
+    #md,
+    #lg,
+    #xl,
+    #twoxl {
+        display: none;
+    }
+}
+
+@media (min-width: $mq-md) {
+    #md {
+        display: inline;
+    }
+
+    #xsmall,
+    #sm,
+    #lg,
+    #xl,
+    #twoxl {
+        display: none;
+    }
+}
+
+@media (min-width: $mq-lg) {
+    #lg {
+        display: inline;
+    }
+
+    #xsmall,
+    #sm,
+    #md,
+    #xl,
+    #twoxl {
+        display: none;
+    }
+}
+
+@media (min-width: $mq-xl) {
+    #xl {
+        display: inline;
+    }
+
+    #xsmall,
+    #sm,
+    #md,
+    #lg,
+    #twoxl {
+        display: none;
+    }
+}
+
+@media (min-width: $mq-2xl) {
+    #twoxl {
+        display: inline;
+    }
+
+    #xsmall,
+    #sm,
+    #md,
+    #lg,
+    #xl {
+        display: none;
+    }
+}
