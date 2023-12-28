@@ -1,0 +1,1 @@
+import{r as t,u as s,c as a,t as o,f as r,o as n}from"./entry.K4gxQbdy.js";const _={__name:"a-propos",setup(p){const e=t("À propos");return s({title:e}),(c,l)=>(n(),a("h1",null,o(r(e)),1))}};export{_ as default};
