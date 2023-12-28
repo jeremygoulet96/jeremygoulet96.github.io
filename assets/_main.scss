@@ -3,8 +3,8 @@
 }
 
 html {
-    font-size: 18px;
-    // letter-spacing: -0.2px;
+    font-size: $font-size-base;
+    letter-spacing: -0.2px;
     scroll-behavior: smooth;
 }
 

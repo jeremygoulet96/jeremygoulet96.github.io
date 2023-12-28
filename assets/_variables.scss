@@ -1,14 +1,21 @@
 /****** VARIABLES ******/
 
-$font: "neue-montreal", "PP Neue Montreal", Helvetica, Arial, -apple-system,
-    BlinkMacSystemFont, sans-serif;
+$font: Inter, "Inter", Helvetica, Arial, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+
+// $transition-short: 0.15s cubic-bezier(0.4, 0, 0.6, 1);
+$transition-short: 0.15s ease-in-out;
+$transition-normal: 0.2s ease-in-out;
+
+/****** FONT-SIZE ******/
+
+$font-size-smaller: 16px;
+$font-size-base: 18px;
 
 /****** PADDING ******/
 
-$padding-sm-top: 3rem;
-$padding-sm-side: 24px;
-$padding-lg-top: 6rem;
-$padding-lg-side: 3rem;
+$padding-sm: 24px;
+$padding-lg: 32px;
 
 /****** MEDIA QUERIES ******/
 
