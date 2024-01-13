@@ -6,7 +6,10 @@ useHead({
 </script>
 
 <template>
-    <h1>{{ title }}</h1>
+    <div>
+        <h1>{{ title }}</h1>
+        <Footer />
+    </div>
 </template>
 
 <style lang="scss"></style>

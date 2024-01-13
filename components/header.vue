@@ -7,15 +7,24 @@
                     target="_blank"
                     class="contact-me blurred-nav"
                 >
-                    <img
+                    <NuxtImg
                         class="memoji"
                         src="/img/memoji.png"
+                        quality="60"
+                        format="webp"
+                        width="40"
+                        height="40"
                         alt="Memoji Jérémy"
                     />
                 </NuxtLink>
                 <span class="message">Contactez-moi! 🤝</span>
             </div>
-            <ul class="nav-list blurred-nav">
+            <ul
+                class="nav-list blurred-nav"
+                :class="{
+                    'is-about': $route.name === 'a-propos',
+                }"
+            >
                 <li>
                     <NuxtLink to="/" activeClass="active">Projets</NuxtLink>
                 </li>
@@ -29,7 +38,7 @@
                 <span class="line" aria-hidden="true"></span>
                 <span class="line" aria-hidden="true"></span>
                 <span class="line" aria-hidden="true"></span>
-                <span class="visuallyHidden">Ouvrir le menu</span>
+                <span class="visually-hidden">Ouvrir le menu</span>
             </button>
         </nav>
     </header>
@@ -142,6 +151,29 @@ $border-radius: 100px;
         .nav-list {
             display: flex;
             justify-content: space-between;
+            position: relative;
+
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 6px;
+                bottom: 6px;
+                left: 6px;
+                right: 54%;
+                z-index: -1;
+                background-color: $white;
+                box-shadow: rgba($black, 0.1) 0px 8px 16px 0px;
+                border-radius: $border-radius;
+                transition: all 0.5s ease-in-out;
+            }
+
+            &.is-about {
+                &::after {
+                    left: 46%;
+                    right: 6px;
+                }
+            }
 
             li {
                 display: flex;
@@ -154,19 +186,19 @@ $border-radius: 100px;
                     text-decoration: none;
                     font-weight: 500;
                     font-size: $font-size-smaller;
+                    transition: transform $transition-short;
 
-                    &:not(.active) {
-                        transition: transform $transition-short;
-
-                        &:hover {
-                            transform: scale(0.9);
-                        }
+                    &:hover {
+                        transform: scale(0.9);
                     }
-                }
 
-                &:has(a.active) {
-                    background-color: $white;
-                    box-shadow: rgba($black, 0.1) 0px 8px 16px 0px;
+                    // &:not(.active) {
+                    //     transition: transform $transition-short;
+
+                    //     &:hover {
+                    //         transform: scale(0.9);
+                    //     }
+                    // }
                 }
             }
         }

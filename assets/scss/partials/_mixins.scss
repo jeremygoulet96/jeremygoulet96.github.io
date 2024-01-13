@@ -27,7 +27,7 @@
 /******** Accessibility *********/
 // Hide only visually, but have it available for screenreaders:
 // http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
-@mixin visuallyhidden {
+@mixin visually-hidden {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -37,7 +37,7 @@
     position: absolute;
     width: 1px;
 
-    // Extends the .visuallyhidden class to allow the element to be focusable
+    // Extends the .visually-hidden class to allow the element to be focusable
     // when navigated to via the keyboard: https://www.drupal.org/node/897638
     &.focusable:active,
     &.focusable:focus {
@@ -52,7 +52,7 @@
 
 /******** Typography *********/
 // To convert a font-size value in pixels to rem equivalent
-@function calculateRem($size) {
+@function rem($size) {
     $remSize: $size / 10px;
     @return #{$remSize}rem;
 }

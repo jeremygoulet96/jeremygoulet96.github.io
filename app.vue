@@ -1,4 +1,14 @@
 <template>
+    <DevOnly>
+        <div class="mq">
+            <span id="xsmall">X-Small</span>
+            <span id="sm">Small</span>
+            <span id="md">Medium</span>
+            <span id="lg">Large</span>
+            <span id="xl">X-Large</span>
+            <span id="xxl">2X-Large</span>
+        </div>
+    </DevOnly>
     <NuxtLayout>
         <NuxtPage />
     </NuxtLayout>
@@ -12,13 +22,29 @@ useHead({
 });
 </script>
 
-<script>
-import "normalize.css";
-</script>
+<style lang="scss">
+.page-enter-active,
+.page-leave-active {
+    overflow: hidden;
+    transition: all 1s;
+}
 
-<style>
-@import url("normalize.css");
-.visuallyHidden {
-    @include visuallyhidden();
+.page-enter-from,
+.page-leave-to {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    filter: blur(20px);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+    transition: all 1s;
+}
+
+.layout-enter-from,
+.layout-leave-to {
+    opacity: 0;
+    filter: blur(20px);
 }
 </style>

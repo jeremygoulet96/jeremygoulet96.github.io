@@ -1,4 +1,4 @@
-.media {
+.mq {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -20,7 +20,7 @@
 #md,
 #lg,
 #xl,
-#twoxl {
+#xxl {
     display: none;
 }
 
@@ -33,7 +33,7 @@
     #md,
     #lg,
     #xl,
-    #twoxl {
+    #xxl {
         display: none;
     }
 }
@@ -47,7 +47,7 @@
     #sm,
     #lg,
     #xl,
-    #twoxl {
+    #xxl {
         display: none;
     }
 }
@@ -61,7 +61,7 @@
     #sm,
     #md,
     #xl,
-    #twoxl {
+    #xxl {
         display: none;
     }
 }
@@ -75,13 +75,13 @@
     #sm,
     #md,
     #lg,
-    #twoxl {
+    #xxl {
         display: none;
     }
 }
 
 @media (min-width: $mq-2xl) {
-    #twoxl {
+    #xxl {
         display: inline;
     }
 
