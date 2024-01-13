@@ -1,0 +1,1 @@
+.page-enter-active,.page-leave-active{overflow:hidden;transition:all 1s}.page-enter-from,.page-leave-to{filter:blur(20px);opacity:0;position:absolute;width:100%}.layout-enter-active,.layout-leave-active{transition:all 1s}.layout-enter-from,.layout-leave-to{filter:blur(20px);opacity:0}
