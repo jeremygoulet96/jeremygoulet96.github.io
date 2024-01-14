@@ -10,17 +10,52 @@ const { data: projets } = await useAsyncData("projets", () =>
 
 <template>
     <div>
-        <h1>{{ title }}</h1>
-        <ul>
-            <li v-for="projet in projets">
-                <a v-if="projet.url" :href="projet.url" target="_blank">
-                    {{ projet.title }}
-                </a>
-                <NuxtLink v-else :to="projet._path">
-                    {{ projet.title }}
+        <section class="hero">
+            <h1>
+                Bonjour. 👋
+                <br />
+                Je suis Jérémy
+            </h1>
+            <span class="my-description">
+                Designer graphique et développeur front-end travaillant
+                présentement chez
+                <NuxtLink to="https://www.corroprotec.com" target="_blank">
+                    Corro-Protec
                 </NuxtLink>
-            </li>
-        </ul>
+                .
+            </span>
+        </section>
+        <section class="projects">
+            <h2>Mes projets</h2>
+            <ul>
+                <li v-for="projet in projets">
+                    <a v-if="projet.url" :href="projet.url" target="_blank">
+                        <NuxtImg
+                            class="project-img"
+                            :src="`/img/projets/${projet.slug}/hero.jpg`"
+                            quality="60"
+                            format="webp"
+                            :alt="`${projet.title}`"
+                        />
+                        {{ projet.title }}
+                        {{ new Date(projet.createdAt).getFullYear() }}
+                        {{ projet.category }}
+                    </a>
+                    <NuxtLink v-else :to="projet._path">
+                        <NuxtImg
+                            class="project-img"
+                            :src="`/img/projets/${projet.slug}/hero.jpg`"
+                            quality="80"
+                            format="webp"
+                            :alt="`${projet.title}`"
+                        />
+                        {{ projet.title }}
+                        {{ new Date(projet.createdAt).getFullYear() }}
+                        {{ projet.category }}
+                    </NuxtLink>
+                </li>
+            </ul>
+        </section>
         <Footer />
     </div>
 </template>

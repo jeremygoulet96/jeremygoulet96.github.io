@@ -35,9 +35,9 @@
                 </li>
             </ul>
             <button type="button" class="btn-menu blurred-nav">
-                <span class="line" aria-hidden="true"></span>
-                <span class="line" aria-hidden="true"></span>
-                <span class="line" aria-hidden="true"></span>
+                <span class="line line-1" aria-hidden="true"></span>
+                <span class="line line-2" aria-hidden="true"></span>
+                <span class="line line-3" aria-hidden="true"></span>
                 <span class="visually-hidden">Ouvrir le menu</span>
             </button>
         </nav>
@@ -63,7 +63,6 @@ $border-radius: 100px;
         width: 100%;
         margin: 0 auto;
         min-width: 316px;
-        // max-width: 400px;
 
         .blurred-nav {
             display: block;
@@ -84,10 +83,10 @@ $border-radius: 100px;
             &:hover,
             &:active {
                 overflow: visible;
-                transform: scale(0.85);
+                transform: scale(1.1);
 
                 .memoji {
-                    transform: scale(0.85);
+                    transform: scale(1.1);
                 }
             }
         }
@@ -139,7 +138,6 @@ $border-radius: 100px;
 
                 // Large
                 @media (min-width: $mq-lg) {
-                    // font-size: $font-size-base;
                     transform-origin: 0 50%;
                     top: 50%;
                     left: 125%;
@@ -165,7 +163,8 @@ $border-radius: 100px;
                 background-color: $white;
                 box-shadow: rgba($black, 0.1) 0px 8px 16px 0px;
                 border-radius: $border-radius;
-                transition: all 0.5s ease-in-out;
+                transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                    right 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             }
 
             &.is-about {
@@ -187,18 +186,21 @@ $border-radius: 100px;
                     font-weight: 500;
                     font-size: $font-size-smaller;
                     transition: transform $transition-short;
+                    cursor: default;
 
-                    &:hover {
-                        transform: scale(0.9);
+                    &:not(.active) {
+                        transition: transform $transition-short;
+
+                        &:hover {
+                            transform: scale(1.1);
+                            cursor: pointer;
+                        }
                     }
 
-                    // &:not(.active) {
-                    //     transition: transform $transition-short;
-
-                    //     &:hover {
-                    //         transform: scale(0.9);
-                    //     }
-                    // }
+                    // Large
+                    @media (min-width: $mq-lg) {
+                        font-size: $font-size-base;
+                    }
                 }
             }
         }
@@ -228,12 +230,16 @@ $border-radius: 100px;
 
             &.is-open {
                 .line {
-                    transform: scale(0);
-                    &:first-child {
-                        transform: translateY(5px) rotate(45deg);
+                    &.line-1 {
+                        opacity: 1;
+                        transform: translateY(8px) rotate(45deg);
                     }
-                    &:last-child {
-                        transform: translateY(-6px) rotate(-45deg);
+                    &.line-2 {
+                        opacity: 0;
+                    }
+                    &.line-3 {
+                        opacity: 1;
+                        transform: translateY(-7.5px) rotate(-45deg);
                     }
                 }
             }

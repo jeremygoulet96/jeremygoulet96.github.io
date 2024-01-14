@@ -26,7 +26,7 @@ useHead({
 .page-enter-active,
 .page-leave-active {
     overflow: hidden;
-    transition: all 1s;
+    transition: filter 0.5s, opacity 0.5s;
 }
 
 .page-enter-from,
@@ -39,7 +39,7 @@ useHead({
 
 .layout-enter-active,
 .layout-leave-active {
-    transition: all 1s;
+    transition: filter 0.5s, opacity 0.5s;
 }
 
 .layout-enter-from,
