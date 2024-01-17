@@ -1,56 +1,59 @@
 <template>
     <header class="header">
-        <nav class="nav">
-            <div class="contact-me-box">
-                <NuxtLink
-                    to="mailto:info@jeremygoulet.ca"
-                    target="_blank"
-                    class="contact-me blurred-nav"
-                >
-                    <NuxtImg
-                        class="memoji"
-                        src="/img/memoji.png"
-                        quality="60"
-                        format="webp"
-                        width="40"
-                        height="40"
-                        alt="Memoji Jérémy"
-                    />
-                </NuxtLink>
-                <span class="message">Contactez-moi! 🤝</span>
-            </div>
-            <ul
-                class="nav-list blurred-nav"
-                :class="{
-                    'is-about': $route.name === 'a-propos',
-                }"
-            >
-                <li>
-                    <NuxtLink to="/" activeClass="active">Projets</NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/a-propos" activeClass="active">
-                        À propos
+        <div class="max-width">
+            <nav class="nav">
+                <div class="contact-me-box">
+                    <NuxtLink
+                        to="mailto:info@jeremygoulet.ca"
+                        target="_blank"
+                        class="contact-me blurred-nav"
+                    >
+                        <NuxtImg
+                            class="memoji"
+                            src="/img/memoji.png"
+                            quality="60"
+                            format="webp"
+                            width="40"
+                            height="40"
+                            alt="Memoji Jérémy"
+                        />
                     </NuxtLink>
-                </li>
-            </ul>
-            <button type="button" class="btn-menu blurred-nav">
-                <span class="line line-1" aria-hidden="true"></span>
-                <span class="line line-2" aria-hidden="true"></span>
-                <span class="line line-3" aria-hidden="true"></span>
-                <span class="visually-hidden">Ouvrir le menu</span>
-            </button>
-        </nav>
+                    <span class="message">Contactez-moi! 🤝</span>
+                </div>
+                <ul
+                    class="nav-list blurred-nav"
+                    :class="{
+                        'is-about': $route.name === 'a-propos',
+                    }"
+                >
+                    <li>
+                        <NuxtLink to="/" activeClass="active">Projets</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink to="/a-propos" activeClass="active">
+                            À propos
+                        </NuxtLink>
+                    </li>
+                </ul>
+                <button type="button" class="btn-menu blurred-nav">
+                    <span class="line line-1" aria-hidden="true"></span>
+                    <span class="line line-2" aria-hidden="true"></span>
+                    <span class="line line-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Ouvrir le menu</span>
+                </button>
+            </nav>
+        </div>
     </header>
 </template>
 
 <style lang="scss" scoped>
-$header-height: 60px;
-$border-radius: 100px;
+// $header-height: 60px;
+// $header-border-radius: 100px;
 .header {
-    display: fixed;
+    position: fixed;
     padding: $padding-sm;
     width: 100%;
+    z-index: 998;
 
     // Large
     @media (min-width: $mq-lg) {
@@ -64,18 +67,19 @@ $border-radius: 100px;
         margin: 0 auto;
         min-width: 316px;
 
-        .blurred-nav {
-            display: block;
-            backdrop-filter: blur(10px);
-            background-color: rgba($white, 0.5);
-            border-radius: $border-radius;
-            box-shadow: rgba($black, 0.1) 0px 24px 48px 8px;
-            padding: 6px;
-            height: $header-height;
-        }
+        // .blurred-nav {
+        //     display: block;
+        //     backdrop-filter: blur(10px);
+        //     background-color: rgba($white, 0.5);
+        //     border-radius: $header-border-radius;
+        //     box-shadow: rgba($black, 0.1) 0px 24px 48px 8px;
+        //     padding: 6px;
+        //     height: $header-height;
+        // }
 
-        .btn-menu,
-        .contact-me {
+        // .btn-menu,
+        // .contact-me {
+        .btn-menu {
             position: relative;
             z-index: 0;
             transition: transform $transition-normal;
@@ -91,60 +95,60 @@ $border-radius: 100px;
             }
         }
 
-        .contact-me-box {
-            position: relative;
+        // .contact-me-box {
+        //     position: relative;
 
-            &:has(.contact-me:hover) {
-                .message {
-                    opacity: 1;
-                    transform: translateY(175%);
+        //     &:has(.contact-me:hover) {
+        //         .message {
+        //             opacity: 1;
+        //             transform: translateY(175%);
 
-                    // Large
-                    @media (min-width: $mq-lg) {
-                        transform: translateY(-50%);
-                    }
-                }
-            }
+        //             // Large
+        //             @media (min-width: $mq-lg) {
+        //                 transform: translateY(-50%);
+        //             }
+        //         }
+        //     }
 
-            .contact-me {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: $header-height;
-                overflow: hidden;
+        //     .contact-me {
+        //         display: flex;
+        //         justify-content: center;
+        //         align-items: center;
+        //         overflow: hidden;
+        //         width: $header-height;
 
-                .memoji {
-                    width: 40px;
-                    transition: transform $transition-short;
-                }
-            }
+        //         .memoji {
+        //             width: 40px;
+        //             transition: transform $transition-short;
+        //         }
+        //     }
 
-            .message {
-                position: absolute;
-                z-index: -1;
-                top: 0;
-                left: 0;
-                color: $white;
-                background-color: $pale-blue;
-                border-radius: $border-radius;
-                white-space: nowrap;
-                padding: 10px 18px;
-                opacity: 0;
-                font-size: $font-size-smaller;
-                transform: translateY(50%);
-                transform-origin: 0 0;
-                transition: transform $transition-normal,
-                    opacity $transition-normal;
+        //     .message {
+        //         position: absolute;
+        //         z-index: -1;
+        //         top: 0;
+        //         left: 0;
+        //         color: $white;
+        //         background-color: $pale-blue;
+        //         border-radius: $header-border-radius;
+        //         white-space: nowrap;
+        //         padding: 10px 18px;
+        //         opacity: 0;
+        //         font-size: $font-size-smaller;
+        //         transform: translateY(50%);
+        //         transform-origin: 0 0;
+        //         transition: transform $transition-normal,
+        //             opacity $transition-normal;
 
-                // Large
-                @media (min-width: $mq-lg) {
-                    transform-origin: 0 50%;
-                    top: 50%;
-                    left: 125%;
-                    transform: translateY(-50%) translateX(-50%);
-                }
-            }
-        }
+        //         // Large
+        //         @media (min-width: $mq-lg) {
+        //             transform-origin: 0 50%;
+        //             top: 50%;
+        //             left: 125%;
+        //             transform: translateY(-50%) translateX(-50%);
+        //         }
+        //     }
+        // }
 
         .nav-list {
             display: flex;
@@ -162,7 +166,7 @@ $border-radius: 100px;
                 z-index: -1;
                 background-color: $white;
                 box-shadow: rgba($black, 0.1) 0px 8px 16px 0px;
-                border-radius: $border-radius;
+                border-radius: $header-border-radius;
                 transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1),
                     right 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             }
@@ -177,7 +181,7 @@ $border-radius: 100px;
             li {
                 display: flex;
                 align-items: center;
-                border-radius: $border-radius;
+                border-radius: $header-border-radius;
                 padding: 16px;
 
                 a {

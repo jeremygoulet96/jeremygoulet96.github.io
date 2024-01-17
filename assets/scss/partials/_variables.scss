@@ -9,6 +9,7 @@ $transition-normal: 0.2s ease-in-out;
 
 /****** FONT-SIZE ******/
 
+$font-size-smallest: 12px;
 $font-size-smaller: 16px;
 $font-size-base: 18px;
 
@@ -23,9 +24,14 @@ $mq-sm: 640px; // Mobile phone
 $mq-md: 768px; // iPad 11" Portrait
 $mq-lg: 1024px; // iPad 11" Landscape
 $mq-xl: 1280px; // Small desktop
-$mq-2xl: 1536px; // Big desktop
+$mq-2xl: 1440px; // Big desktop
 $mq-3xl: 2400px; // Giga desktop
 
 $font-regular: 400;
 $font-semibold: 600;
 $font-bold: 700;
+
+// HEADER
+
+$header-height: 60px;
+$header-border-radius: 100px;
