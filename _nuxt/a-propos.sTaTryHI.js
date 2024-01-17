@@ -1,1 +1,0 @@
-import{_ as t}from"./footer.iVyeqL5E.js";import{r as a,u as r,c as s,a as n,t as c,f as p,b as _,o as l}from"./entry.2bfwo8JB.js";import"./_plugin-vue_export-helper.x3n3nnut.js";const B={__name:"a-propos",setup(m){const e=a("À propos");return r({title:e}),(u,i)=>{const o=t;return l(),s("div",null,[n("h1",null,c(p(e)),1),_(o)])}}};export{B as default};
