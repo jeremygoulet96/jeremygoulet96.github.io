@@ -12,7 +12,7 @@ const { data: projets } = await useAsyncData("projets", () =>
     <div>
         <section class="hero">
             <div class="max-width">
-                <div class="infos">
+                <div class="infos load-anim">
                     <h1 class="title">
                         Bonjour. 👋
                         <br />
@@ -43,9 +43,9 @@ const { data: projets } = await useAsyncData("projets", () =>
         </div>
         <section class="projects">
             <div class="max-width">
-                <h2 class="title">Mes projets</h2>
+                <h2 class="title load-anim">Mes projets</h2>
                 <ul class="projects-list">
-                    <li v-for="projet in projets">
+                    <li v-for="projet in projets" class="load-anim">
                         <a v-if="projet.url" :href="projet.url" target="_blank">
                             <NuxtImg
                                 class="project-img"

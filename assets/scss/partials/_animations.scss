@@ -1,0 +1,46 @@
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.load-anim {
+    opacity: 0;
+    animation: fade-in ease 0.75s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.25s;
+
+    @-moz-document url-prefix() {
+        animation: none;
+        opacity: 1;
+    }
+
+    &.delayed {
+        animation-delay: 0.5s;
+    }
+}
+
+// AOS
+
+[data-aos="load-anim"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition-property: transform, opacity;
+
+    &.aos-animate {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+[data-aos] {
+    body[data-aos-easing="bounce"] &,
+    &[data-aos][data-aos-easing="bounce"] {
+        transition-timing-function: cubic-bezier(0.43, 0.65, 0.48, 1.23);
+    }
+}

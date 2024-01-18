@@ -21,6 +21,7 @@ export default defineNuxtConfig({
                         @use "@/assets/scss/partials/_variables.scss" as *;
                         @use "@/assets/scss/partials/_mixins.scss" as *; 
                         @use "@/assets/scss/partials/_colors.scss" as *;
+                        @use "@/assets/scss/partials/_animations.scss" as *;
                     `,
                 },
             },

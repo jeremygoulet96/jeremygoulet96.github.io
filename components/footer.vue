@@ -1,9 +1,9 @@
 <template>
     <footer class="footer">
         <div class="max-width">
-            <span class="emoji title">✌️</span>
+            <span class="emoji title load-anim">✌️</span>
             <div class="content">
-                <div class="cta">
+                <div class="cta load-anim">
                     <span class="title">
                         Travaillons
                         <br />
@@ -28,7 +28,7 @@
                         <span class="message">Contactez-moi! 🤝</span>
                     </div>
                 </div>
-                <div class="footer-nav">
+                <div class="footer-nav load-anim">
                     <div class="contact-me">
                         <small>Contactez-moi</small>
                         <NuxtLink
