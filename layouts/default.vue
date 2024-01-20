@@ -1,13 +1,10 @@
 <template>
-    <Header />
-    <main>
-        <slot />
-    </main>
+    <div>
+        <Header />
+        <main>
+            <slot />
+        </main>
+    </div>
 </template>
 
-<script>
-// import AOS from "aos";
-// import "aos/dist/aos.css";
-
-// AOS.init({ once: true });
-</script>
+<script></script>

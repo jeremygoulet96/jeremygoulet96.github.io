@@ -26,6 +26,9 @@ export default defineNuxtConfig({
                 },
             },
         },
+        // optimizeDeps: {
+        //     exclude: ["jos-animation"],
+        // },
     },
     googleFonts: {
         families: {

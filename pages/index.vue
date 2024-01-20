@@ -45,7 +45,7 @@ const { data: projets } = await useAsyncData("projets", () =>
             <div class="max-width">
                 <h2 class="title load-anim">Mes projets</h2>
                 <ul class="projects-list">
-                    <li v-for="projet in projets" class="load-anim">
+                    <li v-for="projet in projets">
                         <a v-if="projet.url" :href="projet.url" target="_blank">
                             <NuxtImg
                                 class="project-img"
