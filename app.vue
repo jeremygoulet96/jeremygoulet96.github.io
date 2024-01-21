@@ -47,4 +47,11 @@ useHead({
     opacity: 0;
     filter: blur(20px);
 }
+main {
+    transition: filter 0.5s;
+
+    &.nav-is-open {
+        filter: blur(20px);
+    }
+}
 </style>

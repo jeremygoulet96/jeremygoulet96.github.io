@@ -5,12 +5,20 @@
     border-radius: $header-border-radius;
     box-shadow: rgba($black, 0.1) 0px 24px 48px 8px;
     padding: 6px;
-    height: $header-height;
 }
 
 .contact-me-box {
     position: relative;
     display: inline-block;
+    transition: opacity 0.5s;
+
+    &.nav-is-open {
+        opacity: 0;
+
+        .contact-me {
+            pointer-events: none;
+        }
+    }
 
     &:has(.contact-me:hover) {
         .message {
@@ -25,6 +33,7 @@
     }
 
     .contact-me {
+        height: $header-height;
         display: flex;
         justify-content: center;
         align-items: center;

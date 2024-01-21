@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <div class="max-width">
-            <nav class="nav">
+            <nav class="header-nav">
                 <div class="contact-me-box">
                     <NuxtLink
                         to="mailto:info@jeremygoulet.ca"
@@ -43,12 +43,44 @@
                 </button>
             </nav>
         </div>
+        <ul class="secondary-nav-list blurred-nav">
+            <li>
+                <a
+                    href="https://www.linkedin.com/in/jeremygoulet/"
+                    target="_blank"
+                    class="external-link"
+                >
+                    Linkedin
+                </a>
+            </li>
+            <li>
+                <a
+                    href="https://twitter.com/jeremygoulet"
+                    target="_blank"
+                    class="external-link"
+                >
+                    Twitter
+                </a>
+            </li>
+            <li>
+                <a
+                    href="https://www.dropbox.com/s/0albikmt9h7o8jm/CV_JeremyGoulet.pdf?dl=0"
+                    target="_blank"
+                    class="external-link"
+                >
+                    C.V.
+                </a>
+            </li>
+            <li class="blurred-btn">
+                <a href="mailto:info@jeremygoulet.ca" target="_blank">
+                    Me contacter
+                </a>
+            </li>
+        </ul>
     </header>
 </template>
 
 <style lang="scss" scoped>
-// $header-height: 60px;
-// $header-border-radius: 100px;
 .header {
     position: fixed;
     padding: $padding-sm;
@@ -59,7 +91,7 @@
     @media (min-width: $mq-lg) {
         padding: $padding-lg;
     }
-    .nav {
+    .header-nav {
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -67,18 +99,6 @@
         margin: 0 auto;
         min-width: 316px;
 
-        // .blurred-nav {
-        //     display: block;
-        //     backdrop-filter: blur(10px);
-        //     background-color: rgba($white, 0.5);
-        //     border-radius: $header-border-radius;
-        //     box-shadow: rgba($black, 0.1) 0px 24px 48px 8px;
-        //     padding: 6px;
-        //     height: $header-height;
-        // }
-
-        // .btn-menu,
-        // .contact-me {
         .btn-menu {
             position: relative;
             z-index: 0;
@@ -95,65 +115,20 @@
             }
         }
 
-        // .contact-me-box {
-        //     position: relative;
-
-        //     &:has(.contact-me:hover) {
-        //         .message {
-        //             opacity: 1;
-        //             transform: translateY(175%);
-
-        //             // Large
-        //             @media (min-width: $mq-lg) {
-        //                 transform: translateY(-50%);
-        //             }
-        //         }
-        //     }
-
-        //     .contact-me {
-        //         display: flex;
-        //         justify-content: center;
-        //         align-items: center;
-        //         overflow: hidden;
-        //         width: $header-height;
-
-        //         .memoji {
-        //             width: 40px;
-        //             transition: transform $transition-short;
-        //         }
-        //     }
-
-        //     .message {
-        //         position: absolute;
-        //         z-index: -1;
-        //         top: 0;
-        //         left: 0;
-        //         color: $white;
-        //         background-color: $pale-blue;
-        //         border-radius: $header-border-radius;
-        //         white-space: nowrap;
-        //         padding: 10px 18px;
-        //         opacity: 0;
-        //         font-size: $font-size-smaller;
-        //         transform: translateY(50%);
-        //         transform-origin: 0 0;
-        //         transition: transform $transition-normal,
-        //             opacity $transition-normal;
-
-        //         // Large
-        //         @media (min-width: $mq-lg) {
-        //             transform-origin: 0 50%;
-        //             top: 50%;
-        //             left: 125%;
-        //             transform: translateY(-50%) translateX(-50%);
-        //         }
-        //     }
-        // }
-
         .nav-list {
             display: flex;
             justify-content: space-between;
             position: relative;
+            height: $header-height;
+            transition: opacity 0.5s;
+
+            &.nav-is-open {
+                opacity: 0;
+
+                li a {
+                    pointer-events: none;
+                }
+            }
 
             &::after {
                 content: "";
@@ -229,7 +204,7 @@
                 background-color: currentColor;
                 display: block;
                 margin: 6px auto;
-                transition: transform 0.3s ease-in-out;
+                transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
             }
 
             &.is-open {
@@ -244,6 +219,59 @@
                     &.line-3 {
                         opacity: 1;
                         transform: translateY(-7.5px) rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+
+    .secondary-nav-list {
+        display: flex;
+        position: fixed;
+        top: 50vh;
+        left: 50vw;
+        transform: translateX(-50%) translateY(200%);
+        min-width: 250px;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+
+        &.is-open {
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        li {
+            padding: 16px;
+
+            &.blurred-btn {
+                display: flex;
+                justify-content: center;
+                border-radius: $header-border-radius;
+                background-color: $white;
+                box-shadow: rgba($black, 0.1) 0px 8px 16px 0px;
+                width: 100%;
+            }
+            a {
+                color: $black;
+                text-decoration: none;
+                transition: color 0.2s;
+
+                &:hover {
+                    color: $light-gray;
+                }
+
+                &.external-link {
+                    &::after {
+                        display: inline-block;
+                        content: "↗";
+                        margin-left: 5px;
+                        transition: transform 0.2s;
+                    }
+
+                    &:hover {
+                        &::after {
+                            transform: translateX(5px) translateY(-5px);
+                        }
                     }
                 }
             }
