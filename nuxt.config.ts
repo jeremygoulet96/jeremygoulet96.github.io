@@ -19,16 +19,13 @@ export default defineNuxtConfig({
                 scss: {
                     additionalData: `
                         @use "@/assets/scss/partials/_variables.scss" as *;
-                        @use "@/assets/scss/partials/_mixins.scss" as *; 
+                        @use "@/assets/scss/partials/_mixins.scss" as *;
                         @use "@/assets/scss/partials/_colors.scss" as *;
                         @use "@/assets/scss/partials/_animations.scss" as *;
                     `,
                 },
             },
         },
-        // optimizeDeps: {
-        //     exclude: ["jos-animation"],
-        // },
     },
     googleFonts: {
         families: {
