@@ -1,0 +1,21 @@
+import JOS from "jos-animation/dist/jos.js";
+
+export default defineNuxtPlugin((nuxtApp) => {
+    // const router = useRouter();
+    nuxtApp.vueApp.directive("jos", {
+        mounted(el) {
+            el.classList.add("jos");
+            JOS.init({
+                debugMode: true,
+            });
+        },
+    });
+    // watch(
+    //     () => router.currentRoute.value,
+    //     () => {
+    //         nextTick(() => {
+    //             JOS.refresh();
+    //         });
+    //     }
+    // );
+});

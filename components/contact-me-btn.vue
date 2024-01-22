@@ -1,12 +1,25 @@
-.blurred-nav {
-    display: block;
-    backdrop-filter: blur(10px);
-    background-color: rgba($white, 0.5);
-    border-radius: $header-border-radius;
-    box-shadow: rgba($black, 0.1) 0px 24px 48px 8px;
-    padding: 6px;
-}
+<template>
+    <div class="contact-me-box">
+        <NuxtLink
+            to="mailto:info@jeremygoulet.ca"
+            target="_blank"
+            class="contact-me blurred-nav"
+        >
+            <NuxtImg
+                class="memoji"
+                src="/img/memoji.png"
+                quality="60"
+                format="webp"
+                width="40"
+                height="40"
+                alt="Memoji Jérémy"
+            />
+        </NuxtLink>
+        <span class="message">Contactez-moi! 🤝</span>
+    </div>
+</template>
 
+<style lang="scss" scoped>
 .contact-me-box {
     position: relative;
     display: inline-block;
@@ -85,3 +98,4 @@
         }
     }
 }
+</style>

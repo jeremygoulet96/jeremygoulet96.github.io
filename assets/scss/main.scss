@@ -96,3 +96,12 @@ footer {
         padding: $padding-lg;
     }
 }
+
+.blurred-nav {
+    display: block;
+    backdrop-filter: blur(10px);
+    background-color: rgba($white, 0.5);
+    border-radius: $header-border-radius;
+    box-shadow: rgba($black, 0.1) 0px 24px 48px 8px;
+    padding: 6px;
+}

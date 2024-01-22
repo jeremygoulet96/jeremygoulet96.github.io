@@ -9,24 +9,7 @@
                         <br />
                         ensemble.
                     </span>
-                    <div class="contact-me-box">
-                        <NuxtLink
-                            to="mailto:info@jeremygoulet.ca"
-                            target="_blank"
-                            class="contact-me blurred-nav"
-                        >
-                            <NuxtImg
-                                class="memoji"
-                                src="/img/memoji.png"
-                                quality="60"
-                                format="webp"
-                                width="40"
-                                height="40"
-                                alt="Memoji Jérémy"
-                            />
-                        </NuxtLink>
-                        <span class="message">Contactez-moi! 🤝</span>
-                    </div>
+                    <ContactMeBtn />
                 </div>
                 <div class="footer-nav load-anim">
                     <div class="contact-me">

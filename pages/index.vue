@@ -1,13 +1,3 @@
-<script setup>
-const title = ref("Projets");
-useHead({
-    title: title,
-});
-const { data: projets } = await useAsyncData("projets", () =>
-    queryContent("/projets").find()
-);
-</script>
-
 <template>
     <div>
         <section class="hero">
@@ -45,15 +35,22 @@ const { data: projets } = await useAsyncData("projets", () =>
             <div class="max-width">
                 <h2 class="title load-anim">Mes projets</h2>
                 <ul class="projects-list">
-                    <li v-jos v-for="projet in projets">
+                    <!-- <li
+                        v-for="projet in projets"
+                        v-jos
+                        data-jos_scroll="your_callbackFunction"
+                    > -->
+                    <li v-for="projet in projets">
                         <a v-if="projet.url" :href="projet.url" target="_blank">
-                            <NuxtImg
-                                class="project-img"
-                                :src="`/img/projets/${projet.slug}/hero.jpg`"
-                                quality="60"
-                                format="webp"
-                                :alt="`${projet.title}`"
-                            />
+                            <div class="img-container">
+                                <NuxtImg
+                                    class="project-img"
+                                    :src="`/img/projets/${projet.slug}/hero.jpg`"
+                                    quality="60"
+                                    format="webp"
+                                    :alt="`${projet.title}`"
+                                />
+                            </div>
                             <div class="project-infos">
                                 <div class="infos">
                                     <span class="project-title">
@@ -75,13 +72,15 @@ const { data: projets } = await useAsyncData("projets", () =>
                             </div>
                         </a>
                         <NuxtLink v-else :to="projet._path">
-                            <NuxtImg
-                                class="project-img"
-                                :src="`/img/projets/${projet.slug}/hero.jpg`"
-                                quality="80"
-                                format="webp"
-                                :alt="`${projet.title}`"
-                            />
+                            <div class="img-container">
+                                <NuxtImg
+                                    class="project-img"
+                                    :src="`/img/projets/${projet.slug}/hero.jpg`"
+                                    quality="80"
+                                    format="webp"
+                                    :alt="`${projet.title}`"
+                                />
+                            </div>
                             <div class="project-infos">
                                 <div class="infos">
                                     <span class="project-title">
@@ -109,6 +108,42 @@ const { data: projets } = await useAsyncData("projets", () =>
         <Footer />
     </div>
 </template>
+
+<script setup>
+const pageTitle = ref("Projets");
+useHead({
+    title: pageTitle,
+});
+const { data: projets } = await useAsyncData("projets", () =>
+    queryContent("/projets").find()
+);
+
+// if (process.client) {
+//     window.your_callbackFunction = (element) => {
+//         element.querySelector(".img-container").style.transform =
+//             "perspective(1200px)";
+//         element.querySelector(".img-container").style.transform += `
+//                 translateY(${element.jos.scrollProgress * 145}px)
+//         `;
+//         element.querySelector(".img-container").style.transform += `
+//                 scale(${1 - element.jos.scrollProgress})
+//         `;
+//         // console.log("scale: ", 0.5 + (1 - element.jos.scrollProgress));
+//         element.querySelector(".img-container").style.transform += `
+//                 rotateX(${50 * element.jos.scrollProgress}deg)
+//         `;
+
+//         element.querySelector(".project-img").style.transform =
+//             "perspective(1200px)";
+//         element.querySelector(".project-img").style.transform = `
+//             scale(${1.5 + (1 - element.jos.scrollProgress)}px)
+//         `;
+//         element.querySelector(".project-img").style.transform += `
+//                 rotateX(${-40 * element.jos.scrollProgress}deg)
+//         `;
+//     };
+// }
+</script>
 
 <style lang="scss" scoped>
 .hero {
@@ -185,9 +220,21 @@ const { data: projets } = await useAsyncData("projets", () =>
                 text-decoration: none;
                 font-size: $font-size-smaller;
 
-                .project-img {
-                    width: 100%;
-                    border-radius: 10px;
+                .img-container {
+                    opacity: 1;
+                    overflow: hidden;
+                    transform: perspective(1200px);
+                    // transform: perspective(1200px) translateY(145px) scale(0.5)
+                    // rotateX(50deg);
+
+                    .project-img {
+                        transform: perspective(1200px);
+                        // transform:
+                        //     scale(1.5) rotateX(-40deg);
+
+                        width: 100%;
+                        border-radius: 10px;
+                    }
                 }
 
                 .project-infos {

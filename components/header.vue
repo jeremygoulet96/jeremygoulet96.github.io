@@ -2,28 +2,12 @@
     <header class="header">
         <div class="max-width">
             <nav class="header-nav">
-                <div class="contact-me-box">
-                    <NuxtLink
-                        to="mailto:info@jeremygoulet.ca"
-                        target="_blank"
-                        class="contact-me blurred-nav"
-                    >
-                        <NuxtImg
-                            class="memoji"
-                            src="/img/memoji.png"
-                            quality="60"
-                            format="webp"
-                            width="40"
-                            height="40"
-                            alt="Memoji Jérémy"
-                        />
-                    </NuxtLink>
-                    <span class="message">Contactez-moi! 🤝</span>
-                </div>
+                <ContactMeBtn />
                 <ul
                     class="nav-list blurred-nav"
                     :class="{
                         'is-about': $route.name === 'a-propos',
+                        'nav-is-open': isOpen,
                     }"
                 >
                     <li>
@@ -35,7 +19,12 @@
                         </NuxtLink>
                     </li>
                 </ul>
-                <button type="button" class="btn-menu blurred-nav">
+                <button
+                    type="button"
+                    class="btn-menu blurred-nav"
+                    @click="toggleNav"
+                    :class="{ 'is-open': isOpen }"
+                >
                     <span class="line line-1" aria-hidden="true"></span>
                     <span class="line line-2" aria-hidden="true"></span>
                     <span class="line line-3" aria-hidden="true"></span>
@@ -43,7 +32,11 @@
                 </button>
             </nav>
         </div>
-        <ul class="secondary-nav-list blurred-nav">
+        <ul
+            class="secondary-nav-list blurred-nav"
+            ref="secondaryNavList"
+            :class="{ 'is-open': isOpen }"
+        >
             <li>
                 <a
                     href="https://www.linkedin.com/in/jeremygoulet/"
@@ -79,6 +72,37 @@
         </ul>
     </header>
 </template>
+
+<script setup>
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+
+const isOpen = ref(false);
+const secondaryNavList = ref();
+
+function toggleNav(e) {
+    e && e.preventDefault();
+    isOpen.value ? closeNav() : openNav();
+}
+
+function openNav() {
+    isOpen.value = true;
+    console.log(document.querySelector("main"));
+    document
+        .querySelector(".header .contact-me-box")
+        .classList.add("nav-is-open");
+    document.querySelector("main").classList.add("nav-is-open");
+    disableBodyScroll(secondaryNavList.value);
+}
+
+function closeNav() {
+    isOpen.value = false;
+    document
+        .querySelector(".header .contact-me-box")
+        .classList.remove("nav-is-open");
+    document.querySelector("main").classList.remove("nav-is-open");
+    enableBodyScroll(secondaryNavList.value);
+}
+</script>
 
 <style lang="scss" scoped>
 .header {
@@ -230,7 +254,7 @@
         position: fixed;
         top: 50vh;
         left: 50vw;
-        transform: translateX(-50%) translateY(200%);
+        transform: translateX(-50%) translateY(100vh);
         min-width: 250px;
         flex-direction: column;
         align-items: center;

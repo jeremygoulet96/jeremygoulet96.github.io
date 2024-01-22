@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     modules: ["@nuxt/content", "@nuxtjs/google-fonts", "@nuxt/image"],
     css: [
         "@/assets/scss/main.scss",
-        "@/assets/scss/contact-me-btn.scss",
         process.env.NODE_ENV === "development"
             ? "@/assets/scss/debug-mq.scss"
             : "@/assets/scss/blank.scss",
