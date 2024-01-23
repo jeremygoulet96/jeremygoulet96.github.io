@@ -34,12 +34,7 @@
         <section class="projects">
             <div class="max-width">
                 <h2 class="title load-anim">Mes projets</h2>
-                <ul class="projects-list">
-                    <!-- <li
-                        v-for="projet in projets"
-                        v-jos
-                        data-jos_scroll="your_callbackFunction"
-                    > -->
+                <ul class="projects-list" ref="projectsList">
                     <li v-for="projet in projets">
                         <a v-if="projet.url" :href="projet.url" target="_blank">
                             <div class="img-container">
@@ -110,6 +105,53 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted, ref } from "vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const projectsList = ref();
+let ctx;
+
+onMounted(() => {
+    ctx = gsap.context((self) => {
+        const imgContainers = self.selector(".img-container");
+        const imgs = self.selector(".project-img");
+        imgContainers.forEach((imgContainer) => {
+            gsap.to(imgContainer, {
+                y: 0,
+                scale: 1,
+                rotationX: 0,
+                scrollTrigger: {
+                    trigger: imgContainer,
+                    start: "top bottom",
+                    end: "bottom bottom",
+                    scrub: true,
+                },
+            });
+        });
+        imgs.forEach((img) => {
+            gsap.to(img, {
+                scale: 1,
+                rotationX: 0,
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top bottom",
+                    end: "bottom bottom",
+                    scrub: true,
+                },
+            });
+        });
+    }, projectsList.value); // <- Scope!
+});
+
+onUnmounted(() => {
+    ctx.revert(); // <- Easy Cleanup!
+});
+
+/////////
+
 const pageTitle = ref("Projets");
 useHead({
     title: pageTitle,
@@ -117,32 +159,6 @@ useHead({
 const { data: projets } = await useAsyncData("projets", () =>
     queryContent("/projets").find()
 );
-
-// if (process.client) {
-//     window.your_callbackFunction = (element) => {
-//         element.querySelector(".img-container").style.transform =
-//             "perspective(1200px)";
-//         element.querySelector(".img-container").style.transform += `
-//                 translateY(${element.jos.scrollProgress * 145}px)
-//         `;
-//         element.querySelector(".img-container").style.transform += `
-//                 scale(${1 - element.jos.scrollProgress})
-//         `;
-//         // console.log("scale: ", 0.5 + (1 - element.jos.scrollProgress));
-//         element.querySelector(".img-container").style.transform += `
-//                 rotateX(${50 * element.jos.scrollProgress}deg)
-//         `;
-
-//         element.querySelector(".project-img").style.transform =
-//             "perspective(1200px)";
-//         element.querySelector(".project-img").style.transform = `
-//             scale(${1.5 + (1 - element.jos.scrollProgress)}px)
-//         `;
-//         element.querySelector(".project-img").style.transform += `
-//                 rotateX(${-40 * element.jos.scrollProgress}deg)
-//         `;
-//     };
-// }
 </script>
 
 <style lang="scss" scoped>
@@ -222,15 +238,14 @@ const { data: projets } = await useAsyncData("projets", () =>
 
                 .img-container {
                     opacity: 1;
+                    // height: 80vh;
                     overflow: hidden;
-                    transform: perspective(1200px);
-                    // transform: perspective(1200px) translateY(145px) scale(0.5)
-                    // rotateX(50deg);
+                    transform: perspective(1200px) translateY(145px) scale(0.5)
+                        rotateX(50deg);
 
                     .project-img {
-                        transform: perspective(1200px);
-                        // transform:
-                        //     scale(1.5) rotateX(-40deg);
+                        transform: perspective(1200px) scale(1.5)
+                            rotateX(-40deg);
 
                         width: 100%;
                         border-radius: 10px;

@@ -31,4 +31,7 @@ export default defineNuxtConfig({
             Inter: [400, 500, 600, 800],
         },
     },
+    build: {
+        transpile: ["gsap"],
+    },
 });
