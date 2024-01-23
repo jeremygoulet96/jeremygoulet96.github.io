@@ -5610,10 +5610,6 @@ sass@^1.70.0:
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
-scroll-timeline-polyfill@flackr/scroll-timeline:
-  version "1.0.0"
-  resolved "https://codeload.github.com/flackr/scroll-timeline/tar.gz/db93642a02f0271c2a96a1f15861d04813b67b10"
-
 scule@^1.0.0, scule@^1.1.0, scule@^1.1.1, scule@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/scule/-/scule-1.2.0.tgz#b46d444d6a8c92e73eb80d2d8d00b94ab065cc3e"
