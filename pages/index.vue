@@ -23,17 +23,19 @@
                 </div>
             </div>
         </section>
-        <div class="hero-img-container">
+        <div class="hero-img-container" ref="heroImgContainer">
             <NuxtImg
                 class="hero-img"
                 src="/img/hero.jpeg"
                 quality="60"
                 format="webp"
+                width="1512"
+                height="823"
             />
         </div>
         <section class="projects">
             <div class="max-width">
-                <h2 class="title load-anim">Mes projets</h2>
+                <h2 class="title parallax">Mes projets</h2>
                 <ul class="projects-list" ref="projectsList">
                     <li v-for="projet in projets">
                         <a v-if="projet.url" :href="projet.url" target="_blank">
@@ -111,14 +113,27 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const heroImgContainer = ref();
 const projectsList = ref();
-let ctx;
+let heroImgParallax;
+let projectsAnim;
+let parallax;
 
 onMounted(() => {
-    ctx = gsap.context((self) => {
+    projectsAnim = gsap.context((self) => {
         const imgContainers = self.selector(".img-container");
         const imgs = self.selector(".project-img");
         imgContainers.forEach((imgContainer) => {
+            gsap.from(imgContainer, {
+                y: 145,
+                scale: 0.5,
+                rotationX: 50,
+                scrollTrigger: {
+                    trigger: imgContainer,
+                    start: "top bottom",
+                    end: "bottom bottom",
+                },
+            });
             gsap.to(imgContainer, {
                 y: 0,
                 scale: 1,
@@ -127,11 +142,21 @@ onMounted(() => {
                     trigger: imgContainer,
                     start: "top bottom",
                     end: "bottom bottom",
-                    scrub: true,
+                    scrub: 1,
+                    // markers: true,
                 },
             });
         });
         imgs.forEach((img) => {
+            gsap.from(img, {
+                scale: 1.5,
+                rotationX: -40,
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top bottom",
+                    end: "bottom bottom",
+                },
+            });
             gsap.to(img, {
                 scale: 1,
                 rotationX: 0,
@@ -139,15 +164,47 @@ onMounted(() => {
                     trigger: img,
                     start: "top bottom",
                     end: "bottom bottom",
-                    scrub: true,
+                    scrub: 1,
                 },
             });
         });
     }, projectsList.value); // <- Scope!
+
+    heroImgParallax = gsap.context((self) => {
+        const heroImg = self.selector(".hero-img");
+        gsap.to(heroImg, {
+            yPercent: 50,
+            scrollTrigger: {
+                trigger: heroImgContainer.value,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
+                // markers: true,
+            },
+        });
+    }, heroImgContainer.value); // <- Scope!
+
+    parallax = gsap.context((self) => {
+        const parallaxItems = self.selector(".parallax");
+        parallaxItems.forEach((item) => {
+            gsap.to(item, {
+                y: 250,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1,
+                    markers: true,
+                },
+            });
+        });
+    }, document.querySelector("main")); // <- Scope!
 });
 
 onUnmounted(() => {
-    ctx.revert(); // <- Easy Cleanup!
+    heroImgParallax.revert(); // <- Easy Cleanup!
+    projectsAnim.revert(); // <- Easy Cleanup!
+    parallax.revert(); // <- Easy Cleanup!
 });
 
 /////////
@@ -206,7 +263,8 @@ const { data: projets } = await useAsyncData("projets", () =>
     .hero-img {
         position: absolute;
         width: 100%;
-        top: -50%;
+        top: -100%;
+        // transform: translateY(-50%);
     }
 }
 
@@ -237,18 +295,23 @@ const { data: projets } = await useAsyncData("projets", () =>
                 font-size: $font-size-smaller;
 
                 .img-container {
-                    opacity: 1;
+                    // position: relative;
+                    // background-color: red;
                     // height: 80vh;
+                    border-radius: 10px;
                     overflow: hidden;
-                    transform: perspective(1200px) translateY(145px) scale(0.5)
-                        rotateX(50deg);
+                    // transform: perspective(1200px);
+                    // transform: perspective(1200px) translateY(145px) scale(0.5) rotateX(50deg);
 
                     .project-img {
-                        transform: perspective(1200px) scale(1.5)
-                            rotateX(-40deg);
-
+                        // position: absolute;
+                        // top: 50%;
+                        // left: 0;
+                        display: block;
+                        // transform: perspective(1200px);
+                        // transform: translateY(-50%) perspective(1200px);
+                        // transform: perspective(1200px) scale(1.5) rotateX(-40deg);
                         width: 100%;
-                        border-radius: 10px;
                     }
                 }
 
