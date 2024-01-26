@@ -30,7 +30,6 @@
                 quality="60"
                 format="webp"
                 width="1512"
-                height="823"
             />
         </div>
         <section class="projects">
@@ -49,7 +48,7 @@
                                 />
                             </div>
                             <div class="project-infos">
-                                <div class="infos">
+                                <div class="infos aos">
                                     <span class="project-title">
                                         {{ projet.title }}
                                     </span>
@@ -59,13 +58,13 @@
                                 </div>
                                 <div
                                     v-if="projet.description"
-                                    class="description"
+                                    class="description aos"
                                 >
                                     <span class="project-desc">
                                         {{ projet.description }}
                                     </span>
                                 </div>
-                                <div class="date">
+                                <div class="date aos">
                                     <span class="project-date">
                                         {{
                                             new Date(
@@ -87,7 +86,7 @@
                                 />
                             </div>
                             <div class="project-infos">
-                                <div class="infos">
+                                <div class="infos aos">
                                     <span class="project-title">
                                         {{ projet.title }}
                                     </span>
@@ -97,13 +96,13 @@
                                 </div>
                                 <div
                                     v-if="projet.description"
-                                    class="description"
+                                    class="description aos"
                                 >
                                     <span class="project-desc">
                                         {{ projet.description }}
                                     </span>
                                 </div>
-                                <div class="date">
+                                <div class="date aos">
                                     <span class="project-date">
                                         {{
                                             new Date(
@@ -123,9 +122,17 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
-import gsap from "gsap";
+// import { onMounted, onUnmounted, ref } from "vue";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const pageTitle = ref("Projets");
+useHead({
+    title: pageTitle,
+});
+const { data: projets } = await useAsyncData("projets", () =>
+    queryContent("/projets").find()
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,6 +141,7 @@ const projectsList = ref();
 let heroImgParallax;
 let projectsAnim;
 let parallax;
+let aos;
 
 onMounted(() => {
     projectsAnim = gsap.context((self) => {
@@ -148,6 +156,8 @@ onMounted(() => {
                     trigger: imgContainer,
                     start: "top bottom",
                     end: "bottom bottom",
+                    scrub: 1,
+                    // markers: true,
                 },
             });
             gsap.to(imgContainer, {
@@ -171,6 +181,8 @@ onMounted(() => {
                     trigger: img,
                     start: "top bottom",
                     end: "bottom bottom",
+                    scrub: 1,
+                    // markers: true,
                 },
             });
             gsap.to(img, {
@@ -181,6 +193,7 @@ onMounted(() => {
                     start: "top bottom",
                     end: "bottom bottom",
                     scrub: 1,
+                    // markers: true,
                 },
             });
         });
@@ -189,12 +202,13 @@ onMounted(() => {
     heroImgParallax = gsap.context((self) => {
         const heroImg = self.selector(".hero-img");
         gsap.to(heroImg, {
-            yPercent: 50,
+            yPercent: 15,
             scrollTrigger: {
                 trigger: heroImgContainer.value,
                 start: "top bottom",
-                end: "bottom top",
-                scrub: 1,
+                end: "bottom -200px",
+                scrub: true,
+                // scrub: 1,
                 // markers: true,
             },
         });
@@ -203,12 +217,40 @@ onMounted(() => {
     parallax = gsap.context((self) => {
         const parallaxItems = self.selector(".parallax");
         parallaxItems.forEach((item) => {
-            gsap.to(item, {
-                y: 250,
+            gsap.from(item, {
+                width: 0,
                 scrollTrigger: {
                     trigger: item,
                     start: "top bottom",
                     end: "bottom top",
+                    scrub: 1,
+                    // markers: true,
+                },
+            });
+            gsap.to(item, {
+                y: 150,
+                width: 0,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1,
+                    // markers: true,
+                },
+            });
+        });
+    }, document.querySelector("main")); // <- Scope!
+
+    aos = gsap.context((self) => {
+        const aosItems = self.selector(".aos");
+        aosItems.forEach((item) => {
+            gsap.from(item, {
+                x: 100,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "bottom bottom",
+                    end: () => `+=${item.offsetHeight}`,
                     scrub: 1,
                     // markers: true,
                 },
@@ -221,17 +263,8 @@ onUnmounted(() => {
     heroImgParallax.revert(); // <- Easy Cleanup!
     projectsAnim.revert(); // <- Easy Cleanup!
     parallax.revert(); // <- Easy Cleanup!
+    aos.revert(); // <- Easy Cleanup!
 });
-
-/////////
-
-const pageTitle = ref("Projets");
-useHead({
-    title: pageTitle,
-});
-const { data: projets } = await useAsyncData("projets", () =>
-    queryContent("/projets").find()
-);
 </script>
 
 <style lang="scss" scoped>
@@ -279,12 +312,15 @@ const { data: projets } = await useAsyncData("projets", () =>
     .hero-img {
         position: absolute;
         width: 100%;
-        top: -100%;
+        bottom: 0;
         // transform: translateY(-50%);
     }
 }
 
 .projects {
+    .title {
+        // height: 0;
+    }
     .projects-list {
         margin: 0;
         margin-top: 2rem;
@@ -294,6 +330,7 @@ const { data: projets } = await useAsyncData("projets", () =>
             margin: 0;
             padding: 0;
             list-style-type: none;
+            // background-color: $background;
 
             &:not(last-child) {
                 margin-bottom: 2rem;
@@ -332,10 +369,17 @@ const { data: projets } = await useAsyncData("projets", () =>
                 }
 
                 .project-infos {
-                    padding: 10px 0;
-                    gap: 200px;
                     display: flex;
                     justify-content: space-between;
+                    flex-direction: column;
+                    padding: 10px 0;
+                    gap: 20px;
+
+                    // Large
+                    @media (min-width: $mq-lg) {
+                        flex-direction: row;
+                        gap: 200px;
+                    }
                     .infos {
                         flex-grow: 1;
                         display: flex;
