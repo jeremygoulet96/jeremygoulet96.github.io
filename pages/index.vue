@@ -57,6 +57,14 @@
                                         {{ projet.category }}
                                     </span>
                                 </div>
+                                <div
+                                    v-if="projet.description"
+                                    class="description"
+                                >
+                                    <span class="project-desc">
+                                        {{ projet.description }}
+                                    </span>
+                                </div>
                                 <div class="date">
                                     <span class="project-date">
                                         {{
@@ -85,6 +93,14 @@
                                     </span>
                                     <span class="project-category">
                                         {{ projet.category }}
+                                    </span>
+                                </div>
+                                <div
+                                    v-if="projet.description"
+                                    class="description"
+                                >
+                                    <span class="project-desc">
+                                        {{ projet.description }}
                                     </span>
                                 </div>
                                 <div class="date">
@@ -194,7 +210,7 @@ onMounted(() => {
                     start: "top bottom",
                     end: "bottom top",
                     scrub: 1,
-                    markers: true,
+                    // markers: true,
                 },
             });
         });
@@ -300,7 +316,7 @@ const { data: projets } = await useAsyncData("projets", () =>
                     // height: 80vh;
                     border-radius: 10px;
                     overflow: hidden;
-                    // transform: perspective(1200px);
+                    transform: perspective(1200px);
                     // transform: perspective(1200px) translateY(145px) scale(0.5) rotateX(50deg);
 
                     .project-img {
@@ -308,7 +324,7 @@ const { data: projets } = await useAsyncData("projets", () =>
                         // top: 50%;
                         // left: 0;
                         display: block;
-                        // transform: perspective(1200px);
+                        transform: perspective(1200px);
                         // transform: translateY(-50%) perspective(1200px);
                         // transform: perspective(1200px) scale(1.5) rotateX(-40deg);
                         width: 100%;
@@ -317,9 +333,11 @@ const { data: projets } = await useAsyncData("projets", () =>
 
                 .project-infos {
                     padding: 10px 0;
+                    gap: 200px;
                     display: flex;
                     justify-content: space-between;
                     .infos {
+                        flex-grow: 1;
                         display: flex;
                         flex-direction: column;
                         gap: 4px;
@@ -330,7 +348,16 @@ const { data: projets } = await useAsyncData("projets", () =>
                             color: $light-gray;
                         }
                     }
+                    .description {
+                        // align-self: flex-end;
+                        max-width: 350px;
+                        .project-desc {
+                            color: $light-gray;
+                        }
+                    }
                     .date {
+                        // align-self: flex-end;
+                        // max-width: 150px;
                         .project-date {
                             color: $black;
                         }
