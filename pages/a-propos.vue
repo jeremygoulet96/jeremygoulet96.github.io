@@ -37,7 +37,7 @@
                             target="_blank"
                             class="external-link"
                         >
-                            Linkedin
+                            LinkedIn
                         </a>
                     </li>
                     <li>
@@ -123,11 +123,15 @@ useHead({
     position: relative;
 }
 
-.description {
+.intro {
     padding-top: 160px;
+}
+
+.description {
+    // padding-top: 160px;
     line-height: 29px;
     color: $light-gray;
-    letter-spacing: 0.2px;
+    // letter-spacing: 0.2px;
 }
 
 .links {

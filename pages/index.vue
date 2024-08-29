@@ -218,7 +218,7 @@ onMounted(() => {
         const parallaxItems = self.selector(".parallax");
         parallaxItems.forEach((item) => {
             gsap.from(item, {
-                width: 0,
+                // width: 0,
                 scrollTrigger: {
                     trigger: item,
                     start: "top bottom",
@@ -229,7 +229,7 @@ onMounted(() => {
             });
             gsap.to(item, {
                 y: 150,
-                width: 0,
+                // width: 0,
                 scrollTrigger: {
                     trigger: item,
                     start: "top bottom",
@@ -295,7 +295,7 @@ onUnmounted(() => {
             flex-direction: row;
         }
         .subtitle {
-            letter-spacing: 0.2px;
+            // letter-spacing: 0.2px;
             line-height: 1.6em;
             color: $light-gray;
             max-width: 300px;
