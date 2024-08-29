@@ -35,7 +35,7 @@
         <section class="projects">
             <div class="max-width">
                 <h2 class="title parallax">Mes projets</h2>
-                <ul class="projects-list" ref="projectsList">
+                <ul class="no-list projects-list" ref="projectsList">
                     <li v-for="projet in projets">
                         <a v-if="projet.url" :href="projet.url" target="_blank">
                             <div class="img-container">
@@ -268,6 +268,11 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.max-width {
+    max-width: $mq-2xl;
+    margin: 0 auto;
+    position: relative;
+}
 .hero {
     height: 70vh;
 

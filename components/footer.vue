@@ -23,7 +23,7 @@
                         </NuxtLink>
                     </div>
                     <nav>
-                        <ul class="nav-list">
+                        <ul class="no-list nav-list">
                             <li>
                                 <NuxtLink
                                     to="/"

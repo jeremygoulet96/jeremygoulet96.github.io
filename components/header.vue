@@ -4,7 +4,7 @@
             <nav class="header-nav">
                 <ContactMeBtn />
                 <ul
-                    class="nav-list blurred-nav"
+                    class="no-list nav-list blurred-nav"
                     :class="{
                         'is-about': $route.name === 'a-propos',
                         'nav-is-open': isOpen,
@@ -33,7 +33,7 @@
             </nav>
         </div>
         <ul
-            class="secondary-nav-list blurred-nav"
+            class="no-list secondary-nav-list blurred-nav"
             ref="secondaryNavList"
             :class="{ 'is-open': isOpen }"
         >
