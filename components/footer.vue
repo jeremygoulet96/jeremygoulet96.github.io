@@ -141,7 +141,7 @@
                     a,
                     span {
                         display: block;
-                        font-size: 14px;
+                        // font-size: 14px;
                         color: $white;
                     }
                 }
@@ -160,7 +160,7 @@
 
                         li {
                             a {
-                                font-size: 14px;
+                                // font-size: 14px;
                                 color: $white;
 
                                 &::after {

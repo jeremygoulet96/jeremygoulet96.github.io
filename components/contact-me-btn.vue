@@ -7,11 +7,12 @@
         >
             <NuxtImg
                 class="memoji"
+                format="webp"
                 src="/img/memoji.png"
                 quality="60"
-                format="webp"
-                width="40"
-                height="40"
+                width="60"
+                height="60"
+                densities="x1 x2"
                 alt="Memoji Jérémy"
             />
         </NuxtLink>
@@ -68,6 +69,7 @@
 
         .memoji {
             width: 40px;
+            height: 40px;
             transition: transform $transition-short;
         }
     }
@@ -83,7 +85,7 @@
         white-space: nowrap;
         padding: 10px 18px;
         opacity: 0;
-        font-size: $font-size-smaller;
+        // font-size: $font-size-smaller;
         transform: translateY(50%);
         // transform-origin: 0 0;
         transition: transform $transition-normal, opacity $transition-normal;
@@ -95,6 +97,7 @@
             // left: 125%;
             left: 0;
             transform: translateY(-50%);
+            font-size: $font-size-bigger;
         }
     }
 }

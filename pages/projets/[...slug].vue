@@ -6,8 +6,14 @@ const { data: projet } = await useAsyncData("projet", () =>
 </script>
 
 <template>
-    <h1>{{ projet.title }}</h1>
-    <main>
-        <ContentDoc />
-    </main>
+    <div>
+        <section>
+            <div class="max-width">
+                <h1>{{ projet.title }}</h1>
+                <main>
+                    <ContentDoc />
+                </main>
+            </div>
+        </section>
+    </div>
 </template>

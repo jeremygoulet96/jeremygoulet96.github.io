@@ -129,7 +129,7 @@ useHead({
 
 .description {
     // padding-top: 160px;
-    line-height: 29px;
+    // line-height: 29px;
     color: $light-gray;
     // letter-spacing: 0.2px;
 }
@@ -195,7 +195,7 @@ useHead({
             }
             .poste {
                 display: block;
-                line-height: 29px;
+                // line-height: 29px;
                 font-weight: 400;
                 padding: 1rem 0;
                 color: $light-gray;
@@ -211,7 +211,7 @@ useHead({
                     padding-left: 20px;
                     list-style-type: disc;
                     font-size: 15px;
-                    line-height: 27px;
+                    // line-height: 27px;
                     gap: 5px;
                     color: $light-gray;
                 }

@@ -27,14 +27,15 @@
             <NuxtImg
                 class="hero-img"
                 src="/img/hero.jpeg"
-                quality="60"
+                quality="80"
                 format="webp"
-                width="1512"
+                width="2560"
+                densities="x1 x2"
             />
         </div>
         <section class="projects">
             <div class="max-width">
-                <h2 class="title parallax">Mes projets</h2>
+                <h2 class="title parallax-desktop-only">Mes projets</h2>
                 <ul class="no-list projects-list" ref="projectsList">
                     <li v-for="projet in projets">
                         <a v-if="projet.url" :href="projet.url" target="_blank">
@@ -42,9 +43,12 @@
                                 <NuxtImg
                                     class="project-img"
                                     :src="`/img/projets/${projet.slug}/hero.jpg`"
-                                    quality="60"
                                     format="webp"
+                                    quality="60"
+                                    width="1440"
+                                    densities="1x 2x"
                                     :alt="`${projet.title}`"
+                                    placeholder
                                 />
                             </div>
                             <div class="project-infos">
@@ -58,11 +62,9 @@
                                 </div>
                                 <div
                                     v-if="projet.description"
-                                    class="description aos"
+                                    class="project-description aos"
                                 >
-                                    <span class="project-desc">
-                                        {{ projet.description }}
-                                    </span>
+                                    {{ projet.description }}
                                 </div>
                                 <div class="date aos">
                                     <span class="project-date">
@@ -80,9 +82,12 @@
                                 <NuxtImg
                                     class="project-img"
                                     :src="`/img/projets/${projet.slug}/hero.jpg`"
-                                    quality="80"
                                     format="webp"
+                                    quality="60"
+                                    width="1440"
+                                    densities="1x 2x"
                                     :alt="`${projet.title}`"
+                                    placeholder
                                 />
                             </div>
                             <div class="project-infos">
@@ -96,11 +101,9 @@
                                 </div>
                                 <div
                                     v-if="projet.description"
-                                    class="description aos"
+                                    class="project-description aos"
                                 >
-                                    <span class="project-desc">
-                                        {{ projet.description }}
-                                    </span>
+                                    {{ projet.description }}
                                 </div>
                                 <div class="date aos">
                                     <span class="project-date">
@@ -141,6 +144,7 @@ const projectsList = ref();
 let heroImgParallax;
 let projectsAnim;
 let parallax;
+let parallaxDesktopOnly;
 let aos;
 
 onMounted(() => {
@@ -241,6 +245,38 @@ onMounted(() => {
         });
     }, document.querySelector("main")); // <- Scope!
 
+    //responsive
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width: 800px)", () => {
+        parallaxDesktopOnly = gsap.context((self) => {
+            const parallaxItems = self.selector(".parallax-desktop-only");
+            parallaxItems.forEach((item) => {
+                gsap.from(item, {
+                    // width: 0,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                        // markers: true,
+                    },
+                });
+                gsap.to(item, {
+                    y: 150,
+                    // width: 0,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                        // markers: true,
+                    },
+                });
+            });
+        }, document.querySelector("main")); // <- Scope!
+    });
+
     aos = gsap.context((self) => {
         const aosItems = self.selector(".aos");
         aosItems.forEach((item) => {
@@ -263,6 +299,7 @@ onUnmounted(() => {
     heroImgParallax.revert(); // <- Easy Cleanup!
     projectsAnim.revert(); // <- Easy Cleanup!
     parallax.revert(); // <- Easy Cleanup!
+    parallaxDesktopOnly.revert(); // <- Easy Cleanup!
     aos.revert(); // <- Easy Cleanup!
 });
 </script>
@@ -273,6 +310,7 @@ onUnmounted(() => {
     margin: 0 auto;
     position: relative;
 }
+
 .hero {
     height: 70vh;
 
@@ -294,9 +332,11 @@ onUnmounted(() => {
             align-items: flex-end;
             flex-direction: row;
         }
+
         .subtitle {
             // letter-spacing: 0.2px;
-            line-height: 1.6em;
+            font-size: $font-size-bigger;
+            // line-height: 1.6em;
             color: $light-gray;
             max-width: 300px;
 
@@ -324,7 +364,10 @@ onUnmounted(() => {
 
 .projects {
     .title {
-        // height: 0;
+        // Large
+        @media (min-width: $mq-lg) {
+            height: 0;
+        }
     }
     .projects-list {
         margin: 0;
@@ -390,19 +433,20 @@ onUnmounted(() => {
                         display: flex;
                         flex-direction: column;
                         gap: 4px;
+
                         .project-title {
                             color: $black;
                         }
+
                         .project-category {
                             color: $light-gray;
                         }
                     }
-                    .description {
+                    .project-description {
                         // align-self: flex-end;
+                        display: inline-block;
                         max-width: 350px;
-                        .project-desc {
-                            color: $light-gray;
-                        }
+                        color: $light-gray;
                     }
                     .date {
                         // align-self: flex-end;

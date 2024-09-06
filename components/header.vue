@@ -115,6 +115,7 @@ function closeNav() {
     @media (min-width: $mq-lg) {
         padding: $padding-lg;
     }
+
     .header-nav {
         position: relative;
         display: flex;
@@ -202,7 +203,7 @@ function closeNav() {
 
                     // Large
                     @media (min-width: $mq-lg) {
-                        font-size: $font-size-base;
+                        font-size: $font-size-bigger;
                     }
                 }
             }
@@ -276,6 +277,8 @@ function closeNav() {
                 width: 100%;
             }
             a {
+                font-size: $font-size-bigger;
+                font-weight: $font-weight-medium;
                 color: $black;
                 text-decoration: none;
                 transition: color 0.2s;
