@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "@nuxt/content": "^2.10.0",
-        "body-scroll-lock": "^4.0.0-beta.0",
+        "body-scroll-lock": "vercel/body-scroll-lock",
         "gsap": "^3.12.5",
         "normalize.css": "^8.0.1"
     }
