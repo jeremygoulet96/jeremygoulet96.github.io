@@ -2,7 +2,7 @@
     <div>
         <section class="intro">
             <div class="max-width">
-                <div class="description">
+                <div class="about-description">
                     <p>Bonjour! Je m’appelle Jérémy Goulet.</p>
                     <p>
                         J’ai toujours aimé le design et la technologie. Durant
@@ -55,52 +55,57 @@
         <section class="cv">
             <div class="max-width">
                 <h3>Expérience professionnelle</h3>
+                <ul class="no-list experiences" ref="experiencesList">
+                    <li
+                        v-for="experience in experiences"
+                        class="single-experience"
+                    >
+                        <div class="where">
+                            <a class="company link" href="#">
+                                {{ experience.title }}
+                            </a>
+                            <span class="timeline">
+                                {{ experience.timeline }}
+                            </span>
+                        </div>
+                        <span class="poste">{{ experience.poste }}</span>
+                        <ContentRendererMarkdown
+                            class="no-list two-col"
+                            :value="experience"
+                        />
+                    </li>
+                </ul>
+                <h3>Éducation</h3>
                 <ul class="no-list experiences">
-                    <li>
-                        <span class="where">
-                            Corro-Protec (2023 - Aujourd'hui)
+                    <li v-for="school in education" class="single-experience">
+                        <div class="where">
+                            {{ school.title }}
+                        </div>
+                        <span class="poste">{{ school.poste }}</span>
+                        <ContentRendererMarkdown class="what" :value="school" />
+                    </li>
+                    <li class="single-experience">
+                        <span class="where">Cégep de Sainte-Foy</span>
+                        <span class="poste">
+                            Techniques d’intégration multimédia (Finissant 2018)
                         </span>
-                        <span class="poste">Designer graphique</span>
-                        <ul class="no-list two-col">
-                            <ul class="col">
-                                <li>
-                                    Création de logos et de marques pour des
-                                    compagnies et des produits de l’entreprise.
-                                </li>
-                                <li>
-                                    Création d’images utilisées sur Amazon et
-                                    sur le site web de l’entreprise.
-                                </li>
-                                <li>
-                                    Conception d’emballages, de présentoirs et
-                                    de guides d’utilisation pour les produits de
-                                    l’entreprise.
-                                </li>
-                                <li>
-                                    Conception de vidéos promotionnels dans
-                                    <em>After Effects</em>
-                                    et
-                                    <em>Premiere Pro.</em>
-                                </li>
-                            </ul>
-                            <ul class="col">
-                                <li>Modélisation 3D.</li>
-                                <li>
-                                    Présentation des projets et itération selon
-                                    les commentaires reçus.
-                                </li>
-                                <li>
-                                    Maintien de la cohérence de la marque dans
-                                    tous les éléments visuels grâce au respect
-                                    du guide de style.
-                                </li>
-                                <li>
-                                    Gestion de plusieurs projets simultanément
-                                    en s’assurant de respecter les échéances et
-                                    en établissant un ordre de priorité.
-                                </li>
-                            </ul>
-                        </ul>
+                        <span class="what">
+                            Réalisation de sites web et produits interactifs de
+                            toutes sortes : applications mobiles, e-learning,
+                            jeux en ligne et présentations multimédias. Design
+                            UI/UX et développement web Front-End et Back-End.
+                        </span>
+                    </li>
+                </ul>
+                <h3>Prix et distinctions</h3>
+                <ul class="no-list experiences">
+                    <li class="single-experience">
+                        <span class="where">
+                            Prix coup de cœur - Projet Emballage (mai 2022)
+                        </span>
+                        <span class="poste">
+                            École de design de l'Université Laval
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -114,6 +119,13 @@ const pageTitle = ref("À propos");
 useHead({
     title: pageTitle,
 });
+
+const { data: experiences } = await useAsyncData("experiences", () =>
+    queryContent("/experiences").sort({ createdAt: -1 }).find()
+);
+const { data: education } = await useAsyncData("education", () =>
+    queryContent("/education").sort({ createdAt: -1 }).find()
+);
 </script>
 
 <style lang="scss">
@@ -125,11 +137,13 @@ useHead({
 
 .intro {
     padding-top: 160px;
+    padding-bottom: 0;
 }
 
-.description {
+.about-description {
+    font-size: $font-size-bigger;
     // padding-top: 160px;
-    // line-height: 29px;
+    line-height: 1.5em;
     color: $light-gray;
     // letter-spacing: 0.2px;
 }
@@ -152,6 +166,7 @@ useHead({
             padding: 16px;
             background-color: rgba($black, 0.05);
             font-size: 22px;
+            font-weight: $font-weight-medium;
             text-align: center;
             border-radius: 12px;
             transition: background-color 0.2s;
@@ -180,41 +195,76 @@ useHead({
 }
 
 .cv {
+    display: block;
+    padding: 0;
+    padding-bottom: 6rem;
+    // margin: 0;
+
     h3 {
         font-size: 40px;
-        font-weight: 800;
-        margin-bottom: 4rem;
+        font-weight: $font-weight-bold;
+        margin: 0;
+        margin: 6rem 0;
     }
 
     .experiences {
-        li {
+        .single-experience {
+            font-size: $font-size-smaller;
+            color: $light-gray;
+
             .where {
                 display: block;
-                font-size: 22px;
-                font-weight: 600;
-            }
-            .poste {
-                display: block;
-                // line-height: 29px;
-                font-weight: 400;
-                padding: 1rem 0;
-                color: $light-gray;
-            }
-            .two-col {
-                display: flex;
+                font-size: $font-size-biggest;
+                font-weight: $font-weight-semibold;
 
-                .col {
-                    display: flex;
-                    flex-direction: column;
-                    margin: 0;
-                    padding: 0;
-                    padding-left: 20px;
-                    list-style-type: disc;
-                    font-size: 15px;
-                    // line-height: 27px;
-                    gap: 5px;
+                .company {
+                    color: $black;
+                    text-decoration: none;
+                }
+
+                .timeline {
+                    display: inline-block;
+                    margin-left: 6px;
+                    font-weight: $font-weight-medium;
                     color: $light-gray;
                 }
+            }
+
+            .poste {
+                display: block;
+                font-size: $font-size-bigger;
+                // line-height: 29px;
+                // font-weight: 400;
+                padding: 1em 0;
+                color: $light-gray;
+            }
+
+            .what {
+                font-size: $font-size-smaller;
+                color: $light-gray;
+
+                p {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+            ul {
+                column-count: 2;
+                padding-left: 20px;
+                list-style-type: disc;
+                // font-size: $font-size-smaller;
+                column-gap: 30px;
+                // color: $light-gray;
+
+                li {
+                    break-inside: avoid-column;
+                    margin-bottom: 8px;
+                }
+            }
+
+            &:not(first-child) {
+                margin-top: 6rem;
             }
         }
     }
