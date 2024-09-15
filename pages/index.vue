@@ -38,7 +38,11 @@
                 <h2 class="title parallax-desktop-only">Mes projets</h2>
                 <ul class="no-list projects-list" ref="projectsList">
                     <li v-for="projet in projets">
-                        <a v-if="projet.url" :href="projet.url" target="_blank">
+                        <LinkOrExternal
+                            :external="!!projet.url"
+                            :to="projet.url || projet._path"
+                            :id="projet.slug"
+                        >
                             <div class="img-container">
                                 <NuxtImg
                                     class="project-img"
@@ -76,46 +80,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </a>
-                        <NuxtLink v-else :to="projet._path">
-                            <div class="img-container">
-                                <NuxtImg
-                                    class="project-img"
-                                    :src="`/img/projets/${projet.slug}/hero.jpg`"
-                                    format="webp"
-                                    quality="60"
-                                    width="1440"
-                                    densities="1x 2x"
-                                    :alt="`${projet.title}`"
-                                    placeholder
-                                />
-                            </div>
-                            <div class="project-infos">
-                                <div class="infos aos">
-                                    <span class="project-title">
-                                        {{ projet.title }}
-                                    </span>
-                                    <span class="project-category">
-                                        {{ projet.category }}
-                                    </span>
-                                </div>
-                                <div
-                                    v-if="projet.description"
-                                    class="project-description aos"
-                                >
-                                    {{ projet.description }}
-                                </div>
-                                <div class="date aos">
-                                    <span class="project-date">
-                                        {{
-                                            new Date(
-                                                projet.createdAt
-                                            ).getFullYear()
-                                        }}
-                                    </span>
-                                </div>
-                            </div>
-                        </NuxtLink>
+                        </LinkOrExternal>
                     </li>
                 </ul>
             </div>
@@ -125,7 +90,6 @@
 </template>
 
 <script setup>
-// import { onMounted, onUnmounted, ref } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -134,7 +98,7 @@ useHead({
     title: pageTitle,
 });
 const { data: projets } = await useAsyncData("projets", () =>
-    queryContent("/projets").find()
+    queryContent("/projets").sort({ createdAt: -1 }).find()
 );
 
 gsap.registerPlugin(ScrollTrigger);
@@ -148,6 +112,21 @@ let parallaxDesktopOnly;
 let aos;
 
 onMounted(() => {
+    heroImgParallax = gsap.context((self) => {
+        const heroImg = document.querySelector(".hero-img");
+        gsap.to(heroImg, {
+            yPercent: 15,
+            scrollTrigger: {
+                trigger: heroImgContainer.value,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+                // markers: true,
+                onEnter: () => (heroImg.style.opacity = 1),
+            },
+        });
+    }, heroImgContainer.value); // <- Scope!
+
     projectsAnim = gsap.context((self) => {
         const imgContainers = self.selector(".img-container");
         const imgs = self.selector(".project-img");
@@ -202,21 +181,6 @@ onMounted(() => {
             });
         });
     }, projectsList.value); // <- Scope!
-
-    heroImgParallax = gsap.context((self) => {
-        const heroImg = self.selector(".hero-img");
-        gsap.to(heroImg, {
-            yPercent: 15,
-            scrollTrigger: {
-                trigger: heroImgContainer.value,
-                start: "top bottom",
-                end: "bottom -200px",
-                scrub: true,
-                // scrub: 1,
-                // markers: true,
-            },
-        });
-    }, heroImgContainer.value); // <- Scope!
 
     parallax = gsap.context((self) => {
         const parallaxItems = self.selector(".parallax");
@@ -358,6 +322,9 @@ onUnmounted(() => {
         position: absolute;
         width: 100%;
         bottom: 0;
+        opacity: 0;
+        transition: opacity 150ms ease-in-out;
+        // top: 50%;
         // transform: translateY(-50%);
     }
 }
