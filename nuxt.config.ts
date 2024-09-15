@@ -1,44 +1,56 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  modules: ["@nuxt/content", "@nuxtjs/google-fonts", "@nuxt/image"],
+    devtools: { enabled: true },
+    modules: ["@nuxt/content", "@nuxtjs/google-fonts", "@nuxt/image"],
 
-  css: [
-      "@/assets/scss/main.scss",
-      process.env.NODE_ENV === "development"
-          ? "@/assets/scss/debug-mq.scss"
-          : "@/assets/scss/blank.scss",
-  ],
+    app: {
+        head: {
+            link: [
+                {
+                    rel: "icon",
+                    type: "image/png",
+                    href: "/img/favicon.png",
+                },
+            ],
+        },
+    },
 
-  app: {
-      pageTransition: { name: "page", mode: "in-out" },
-      layoutTransition: { name: "layout", mode: "in-out" },
-  },
+    css: [
+        "@/assets/scss/main.scss",
+        process.env.NODE_ENV === "development"
+            ? "@/assets/scss/debug-mq.scss"
+            : "@/assets/scss/blank.scss",
+    ],
 
-  vite: {
-      css: {
-          preprocessorOptions: {
-              scss: {
-                  additionalData: `
+    app: {
+        pageTransition: { name: "page", mode: "in-out" },
+        layoutTransition: { name: "layout", mode: "in-out" },
+    },
+
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: `
                       @use "@/assets/scss/partials/_variables.scss" as *;
                       @use "@/assets/scss/partials/_mixins.scss" as *;
                       @use "@/assets/scss/partials/_colors.scss" as *;
                       @use "@/assets/scss/partials/_animations.scss" as *;
                   `,
-              },
-          },
-      },
-  },
+                },
+            },
+        },
+    },
 
-  googleFonts: {
-      families: {
-          Inter: [400, 500, 600, 800],
-      },
-  },
+    googleFonts: {
+        families: {
+            Inter: [400, 500, 600, 800],
+        },
+    },
 
-  build: {
-      transpile: ["gsap"],
-  },
+    build: {
+        transpile: ["gsap"],
+    },
 
-  compatibilityDate: "2024-08-28",
+    compatibilityDate: "2024-08-28",
 });
