@@ -1,1 +1,0 @@
-import{a0 as t,l as o,A as n,c as r,a as e,m as c,o as l}from"./DNqZWCp-.js";const m={__name:"projet",setup(u){t(),o(),n();const a=()=>{};return(s,d)=>(l(),r("div",null,[e("header",{class:"header"},[e("div",{class:"max-width"},[e("nav",{class:"header-nav"},[e("button",{type:"button",onClick:a},"Back")])])]),e("main",null,[c(s.$slots,"default")])]))}};export{m as default};
