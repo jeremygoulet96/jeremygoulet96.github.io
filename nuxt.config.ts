@@ -3,18 +3,6 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: ["@nuxt/content", "@nuxtjs/google-fonts", "@nuxt/image"],
 
-    app: {
-        head: {
-            link: [
-                {
-                    rel: "icon",
-                    type: "image/png",
-                    href: "/img/favicon.png",
-                },
-            ],
-        },
-    },
-
     css: [
         "@/assets/scss/main.scss",
         process.env.NODE_ENV === "development"
@@ -25,6 +13,15 @@ export default defineNuxtConfig({
     app: {
         pageTransition: { name: "page", mode: "in-out" },
         layoutTransition: { name: "layout", mode: "in-out" },
+        head: {
+            link: [
+                {
+                    rel: "icon",
+                    type: "image/png",
+                    href: "/img/favicon.png",
+                },
+            ],
+        },
     },
 
     vite: {
