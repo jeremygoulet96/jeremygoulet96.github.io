@@ -1,0 +1,17 @@
+{
+    "name": "Jérémy Goulet",
+    "short_name": "Jérémy Goulet",
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "icons": [
+        {
+            "src": "/img/icon-1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "theme_color": "#fff",
+    "background_color": "#fff",
+    "display": "standalone"
+}
