@@ -2,7 +2,6 @@
 title: La mer est belle
 slug: la-mer-est-belle
 createdAt: 2022-03-15
-timeline: Janvier 2022 ⟶ Mars 2022
 category: Design d'emballage
 where: Bac. en design graphique (Université Laval)
 description: Réalisation d'un emballage pour un produit fictif dans le cadre d'un cours à l'Université.
@@ -11,41 +10,41 @@ intro: L’emballage est un outil fabuleux pour entrer en contact concrètement,
 
 ## Gamme principale: Duo de caviar et de blinis
 
-![img](/img/projets/la-mer-est-belle/gamme_complete.jpeg)
+![img](/img/projets/la-mer-est-belle/gamme_complete.jpg)
 
 ### Caviar de lompe noir
 
-![img](/img/projets/la-mer-est-belle/caviar_lompe_avant.jpeg)
-![img](/img/projets/la-mer-est-belle/caviar_lompe_arriere.jpeg)
+![img](/img/projets/la-mer-est-belle/caviar_lompe_avant.jpg)
+![img](/img/projets/la-mer-est-belle/caviar_lompe_arriere.jpg)
 
 ### Caviar de truite arc-en-ciel
 
-![img](/img/projets/la-mer-est-belle/caviar_truite_avant.jpeg)
-![img](/img/projets/la-mer-est-belle/caviar_truite_arriere.jpeg)
-![img](/img/projets/la-mer-est-belle/caviar_tin.jpeg)
+![img](/img/projets/la-mer-est-belle/caviar_truite_avant.jpg)
+![img](/img/projets/la-mer-est-belle/caviar_truite_arriere.jpg)
+![img](/img/projets/la-mer-est-belle/caviar_tin.jpg)
 
 ## Gamme secondaire: Poisson fumé
 
-![img](/img/projets/la-mer-est-belle/poisson_fume_1.jpeg)
-![img](/img/projets/la-mer-est-belle/poisson_fume_2.jpeg)
+![img](/img/projets/la-mer-est-belle/poisson_fume_1.jpg)
+![img](/img/projets/la-mer-est-belle/poisson_fume_2.jpg)
 
 ## Gamme tertiaire: Bougie parfumée d’inspiration marine
 
-![img](/img/projets/la-mer-est-belle/chandelles.jpeg)
+![img](/img/projets/la-mer-est-belle/chandelles.jpg)
 
 ## Maquette réelle
 
-![img](/img/projets/la-mer-est-belle/maquette_reelle_1.jpeg)
-![img](/img/projets/la-mer-est-belle/maquette_reelle_2.jpeg)
+![img](/img/projets/la-mer-est-belle/maquette_reelle_1.jpg)
+![img](/img/projets/la-mer-est-belle/maquette_reelle_2.jpg)
 
 ## Modèle 3D
 
-![img](/img/projets/la-mer-est-belle/modele_3d.jpeg)
+![img](/img/projets/la-mer-est-belle/modele_3d.jpg)
 
 ## Die-cut
 
-![img](/img/projets/la-mer-est-belle/die.jpeg)
+![img](/img/projets/la-mer-est-belle/die.jpg)
 
 ## Logo
 
-![img](/img/projets/la-mer-est-belle/logo.jpeg)
+![img](/img/projets/la-mer-est-belle/logo.jpg)
