@@ -3,17 +3,10 @@
         <section class="intro">
             <div class="max-width">
                 <div class="about-description">
-                    <p>Bonjour! Je m’appelle Jérémy Goulet.</p>
+                    <p>Bonjour!</p>
                     <p>
-                        J’ai toujours aimé le design et la technologie. Durant
-                        mon parcours scolaire, j’ai étudié en Techniques
-                        d’intégration multimédia au CÉGEP de Sainte-Foy. Par la
-                        suite, je voulais apprendre quelque chose de nouveau et
-                        je me suis inscrit au baccalauréat en design de produits
-                        à l’Université Laval. Après une session, je me suis
-                        rendu compte que ce n’était pas pour moi. Je suis donc
-                        retourné à mes sources et je me suis inscrit au
-                        Baccalauréat en design graphique.
+                        Je m’appelle Jérémy Goulet et je suis passionné par le
+                        design et la technologie.
                     </p>
                     <p>
                         Ayant accumulé plusieurs cordes à mon arc avec les
@@ -22,12 +15,12 @@
                         libres.
                     </p>
                     <p>
-                        J’aime faire du design et du “reverse engineer” afin de
-                        comprendre ce qui a poussé l’auteur d’un design à
-                        l’avoir fait ainsi. J’aime aussi créer des sites web et
-                        programmer. Je tape couramment en HTML, CSS et
-                        JavaScript. J’ai d'ailleurs commencé à apprendre Swift
-                        avec Xcode.
+                        Au fil des années, j’ai développé une expertise
+                        diversifiée qui inclut le design, la modélisation 3D,
+                        l’intégration web et la programmation. Je m'intéresse
+                        par l'analyse de concepts de design ("reverse
+                        engineering") pour comprendre les choix qui ont guidé
+                        leur conception. J’aime également créer des sites web.
                     </p>
                 </div>
                 <ul class="no-list links">
@@ -196,12 +189,13 @@ const { data: education } = await useAsyncData("education", () =>
 
 .cv {
     display: block;
-    padding: 0;
+    // padding: 0;
     padding-bottom: 6rem;
     // margin: 0;
 
     h3 {
         font-size: 40px;
+        line-height: 1em;
         font-weight: $font-weight-bold;
         margin: 0;
         margin: 6rem 0;
@@ -216,6 +210,7 @@ const { data: education } = await useAsyncData("education", () =>
                 display: block;
                 font-size: $font-size-biggest;
                 font-weight: $font-weight-semibold;
+                color: $black;
 
                 .company {
                     color: $black;
@@ -250,12 +245,18 @@ const { data: education } = await useAsyncData("education", () =>
             }
 
             ul {
-                column-count: 2;
+                // column-count: 1;
                 padding-left: 20px;
                 list-style-type: disc;
-                // font-size: $font-size-smaller;
-                column-gap: 30px;
+                // // font-size: $font-size-smaller;
+                // column-gap: 30px;
                 // color: $light-gray;
+
+                // Large
+                @media (min-width: $mq-md) {
+                    column-count: 2;
+                    column-gap: 30px;
+                }
 
                 li {
                     break-inside: avoid-column;

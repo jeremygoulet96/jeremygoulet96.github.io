@@ -38,7 +38,7 @@ source {
     color: $black;
     font-size: 54px;
     font-weight: 400;
-    line-height: 4.8rem;
+    line-height: 1.25em;
     letter-spacing: -3.6px;
     padding: 0;
     margin: 0;
@@ -46,7 +46,7 @@ source {
     // Large
     @media (min-width: $mq-lg) {
         font-size: 84px;
-        line-height: 6rem;
+        line-height: 1em;
     }
 }
 

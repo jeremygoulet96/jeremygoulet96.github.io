@@ -16,7 +16,7 @@ const [prev, next] = surrounds.value;
     <div>
         <section>
             <div class="max-width">
-                <!-- <h1>{{ projet.title }}</h1> -->
+                <h1>{{ projet.title }}</h1>
                 <main>
                     <ContentDoc />
                 </main>
@@ -24,7 +24,6 @@ const [prev, next] = surrounds.value;
         </section>
         <section>
             <div class="max-width">
-                <!-- <h1>{{ projet.title }}</h1> -->
                 <main>
                     <LinkOrExternal
                         :external="!!next.url"

@@ -403,10 +403,12 @@ onUnmounted(() => {
 
                         .project-title {
                             color: $black;
+                            text-decoration: none;
                         }
 
                         .project-category {
                             color: $light-gray;
+                            text-decoration: none;
                         }
                     }
                     .project-description {
