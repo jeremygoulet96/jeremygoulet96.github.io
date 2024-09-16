@@ -18,14 +18,14 @@ const router = useRouter();
 const { params } = useRoute();
 const nuxtApp = useNuxtApp();
 const goBack = () => {
-    // const slug = params.slug;
-    // router.push("/").then(() => {
-    //     nuxtApp.hook("page:transition:finish", () => {
-    //         document.getElementById(slug).scrollIntoView({
-    //             block: "center",
-    //             inline: "center",
-    //         });
-    //     });
-    // });
+    const slug = params.slug;
+    router.push("/").then(() => {
+        nuxtApp.hook("page:transition:finish", () => {
+            document.getElementById(slug).scrollIntoView({
+                block: "center",
+                inline: "center",
+            });
+        });
+    });
 };
 </script>

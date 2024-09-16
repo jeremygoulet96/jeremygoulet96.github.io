@@ -10,6 +10,12 @@ export default defineNuxtConfig({
             : "@/assets/scss/blank.scss",
     ],
 
+    content: {
+        markdown: {
+            anchorLinks: false,
+        },
+    },
+
     app: {
         pageTransition: { name: "page", mode: "in-out" },
         layoutTransition: { name: "layout", mode: "in-out" },
