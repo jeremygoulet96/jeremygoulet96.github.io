@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <a v-if="external" :href="to" target="_blank">
-            <slot />
-        </a>
-        <NuxtLink v-else :to="to">
-            <slot />
-        </NuxtLink>
-    </div>
+    <a v-if="external" :href="to" target="_blank">
+        <slot />
+    </a>
+    <NuxtLink v-else :to="to">
+        <slot />
+    </NuxtLink>
 </template>
 
 <script setup>
