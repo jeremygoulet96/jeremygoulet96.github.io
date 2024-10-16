@@ -119,6 +119,10 @@ const { data: experiences } = await useAsyncData("experiences", () =>
 const { data: education } = await useAsyncData("education", () =>
     queryContent("/education").sort({ createdAt: -1 }).find()
 );
+
+onUnmounted(() => {
+    // window.scrollTo(0, 0);
+});
 </script>
 
 <style lang="scss">

@@ -92,19 +92,13 @@ const { data: projets } = await useAsyncData("projets", () =>
     queryContent("/projets").sort({ createdAt: -1 }).find()
 );
 
-// gsap.registerPlugin(ScrollTrigger);
-
 const heroImgContainer = ref();
 const projectsList = ref();
-// let heroBannerParallax;
-// let projectsAnim;
-// let parallax;
-// let parallaxDesktopOnly;
-// let aos;
-let ctx;
+let anims;
+let mm = $gsap.matchMedia();
 
 onMounted(() => {
-    ctx = $gsap.context((self) => {
+    anims = $gsap.context((self) => {
         const projectsItems = self.selector(".project-item");
         projectsItems.forEach((project) => {
             const imgContainer = project.querySelector(".img-container");
@@ -118,7 +112,7 @@ onMounted(() => {
                     start: "top bottom",
                     end: "bottom bottom",
                     scrub: 1,
-                    markers: true,
+                    // markers: true,
                 },
                 scale: 1,
                 rotationX: 0,
@@ -141,19 +135,58 @@ onMounted(() => {
                 rotationX: 0,
             });
         });
+
+        const heroImg = document.querySelector(".hero-img");
+        $gsap.to(heroImg, {
+            yPercent: 15,
+            scrollTrigger: {
+                trigger: heroImgContainer.value,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+                // markers: true,
+                onEnter: () => (heroImg.style.opacity = 1),
+            },
+        });
+
+        mm.add("(min-width: 800px)", () => {
+            const parallaxItems = self.selector(".parallax-desktop-only");
+            document.querySelector(".projects-section .title").style.height = 0;
+            parallaxItems.forEach((item) => {
+                $gsap.to(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                        // markers: true,
+                    },
+                    y: 150,
+                });
+            });
+        });
+
+        const aosItems = self.selector(".aos");
+        aosItems.forEach((item) => {
+            $gsap.from(item, {
+                x: 100,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "bottom bottom",
+                    end: () => `+=${item.offsetHeight}`,
+                    scrub: 1,
+                    // markers: true,
+                },
+            });
+        });
     }, document.querySelector("main")); // <- Scope!
 });
 
 onUnmounted(() => {
+    // window.scrollTo(0, 0);
     // Easy Cleanup!
-    // heroBannerParallax.revert();
-    // projectsAnim.revert();
-    // parallax.revert();
-    // parallaxDesktopOnly.revert();
-    // aos.revert();
-    // window.history.scrollRestoration = "manual";
-    // $gsap.ScrollTrigger.clearScrollMemory();
-    ctx.revert();
+    anims.revert();
 });
 </script>
 
@@ -234,7 +267,7 @@ onUnmounted(() => {
     li {
         margin: 0;
         padding: 0;
-        background: rgba(red, 0.25);
+        // background: rgba(red, 0.25);
 
         &:not(last-child) {
             margin-bottom: 2rem;

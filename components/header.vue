@@ -95,9 +95,7 @@ function toggleNav(e) {
 function openNav() {
     isOpen.value = true;
     console.log(document.querySelector("main"));
-    document
-        .querySelector(".header .contact-me-box")
-        .classList.add("nav-is-open");
+    document.querySelector(".header .go-home-box").classList.add("nav-is-open");
     document.querySelector("main").classList.add("nav-is-open");
     disableBodyScroll(secondaryNavList.value);
 }
@@ -105,7 +103,7 @@ function openNav() {
 function closeNav() {
     isOpen.value = false;
     document
-        .querySelector(".header .contact-me-box")
+        .querySelector(".header .go-home-box")
         .classList.remove("nav-is-open");
     document.querySelector("main").classList.remove("nav-is-open");
     enableBodyScroll(secondaryNavList.value);
