@@ -1,10 +1,6 @@
 <template>
-    <div class="contact-me-box">
-        <NuxtLink
-            to="mailto:info@jeremygoulet.ca"
-            target="_blank"
-            class="contact-me blurred-nav"
-        >
+    <div class="go-home-box">
+        <NuxtLink to="/" class="go-home blurred-nav">
             <NuxtImg
                 class="memoji"
                 format="webp"
@@ -16,12 +12,14 @@
                 alt="Memoji Jérémy"
             />
         </NuxtLink>
-        <span class="message">Contactez-moi! 🤝</span>
+        <span v-if="$route.name != 'index'" class="message">
+            Revenir à l'accueil
+        </span>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.contact-me-box {
+.go-home-box {
     position: relative;
     display: inline-block;
     transition: opacity 0.5s;
@@ -29,12 +27,12 @@
     &.nav-is-open {
         opacity: 0;
 
-        .contact-me {
+        .go-home {
             pointer-events: none;
         }
     }
 
-    &:has(.contact-me:hover) {
+    &:has(.go-home:hover) {
         .message {
             opacity: 1;
             transform: translateY(175%);
@@ -46,7 +44,7 @@
         }
     }
 
-    .contact-me {
+    .go-home {
         height: $header-height;
         display: flex;
         justify-content: center;
@@ -73,7 +71,6 @@
             transition: transform $transition-short;
         }
     }
-
     .message {
         position: absolute;
         z-index: -1;

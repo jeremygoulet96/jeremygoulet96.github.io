@@ -18,6 +18,14 @@
                             À propos
                         </NuxtLink>
                     </li>
+                    <li>
+                        <NuxtLink
+                            to="mailto:info@jeremygoulet.ca"
+                            activeClass="active"
+                        >
+                            Me contacter
+                        </NuxtLink>
+                    </li>
                 </ul>
                 <button
                     type="button"
@@ -162,7 +170,8 @@ function closeNav() {
                 top: 6px;
                 bottom: 6px;
                 left: 6px;
-                right: 54%;
+                // right: 54%;
+                right: 73%;
                 z-index: -1;
                 background-color: $white;
                 box-shadow: rgba($black, 0.1) 0px 8px 16px 0px;
@@ -173,8 +182,10 @@ function closeNav() {
 
             &.is-about {
                 &::after {
-                    left: 46%;
-                    right: 6px;
+                    // left: 46%;
+                    left: 27%;
+                    right: 42%;
+                    // right: 6px;
                 }
             }
 
