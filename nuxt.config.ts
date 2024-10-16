@@ -1,7 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
-    modules: ["@nuxt/content", "@nuxtjs/google-fonts", "@nuxt/image"],
+    modules: [
+        "@nuxt/content",
+        "@nuxtjs/google-fonts",
+        "@nuxt/image",
+        "@hypernym/nuxt-gsap",
+    ],
+
+    gsap: {
+        extraPlugins: {
+            scrollTrigger: true,
+        },
+    },
 
     css: [
         "@/assets/scss/main.scss",

@@ -42,7 +42,6 @@
                                     width="1440"
                                     densities="1x 2x"
                                     :alt="`${projet.title}`"
-                                    placeholder
                                 />
                             </div>
                             <div class="project-infos">
@@ -80,8 +79,10 @@
 </template>
 
 <script setup>
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+const { $gsap, $ScrollTrigger } = useNuxtApp();
+
+// import { gsap } from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const pageTitle = ref("Projets");
 useHead({
@@ -91,49 +92,32 @@ const { data: projets } = await useAsyncData("projets", () =>
     queryContent("/projets").sort({ createdAt: -1 }).find()
 );
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 const heroImgContainer = ref();
 const projectsList = ref();
-let heroImgParallax;
-let projectsAnim;
-let projectsItems;
-let parallax;
-let parallaxDesktopOnly;
-let aos;
+// let heroBannerParallax;
+// let projectsAnim;
+// let parallax;
+// let parallaxDesktopOnly;
+// let aos;
+let ctx;
 
 onMounted(() => {
-    heroImgParallax = gsap.context((self) => {
-        const heroImg = document.querySelector(".hero-img");
-        gsap.to(heroImg, {
-            yPercent: 15,
-            scrollTrigger: {
-                trigger: heroImgContainer.value,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true,
-                // markers: true,
-                onEnter: () => (heroImg.style.opacity = 1),
-            },
-        });
-    }, heroImgContainer.value); // <- Scope!
-
-    projectsAnim = gsap.context((self) => {
+    ctx = $gsap.context((self) => {
         const projectsItems = self.selector(".project-item");
-
         projectsItems.forEach((project) => {
             const imgContainer = project.querySelector(".img-container");
-            gsap.set(imgContainer, {
+            $gsap.set(imgContainer, {
                 scale: 0.5,
                 rotationX: 50,
             });
-            gsap.to(imgContainer, {
+            $gsap.to(imgContainer, {
                 scrollTrigger: {
                     trigger: project,
                     start: "top bottom",
                     end: "bottom bottom",
                     scrub: 1,
-                    // invalidateOnRefresh: true,
                     markers: true,
                 },
                 scale: 1,
@@ -141,17 +125,16 @@ onMounted(() => {
             });
 
             const img = imgContainer.querySelector(".project-img");
-            gsap.set(img, {
+            $gsap.set(img, {
                 scale: 1.5,
                 rotationX: -40,
             });
-            gsap.to(img, {
+            $gsap.to(img, {
                 scrollTrigger: {
                     trigger: project,
                     start: "top bottom",
                     end: "bottom bottom",
                     scrub: 1,
-                    // invalidateOnRefresh: true,
                     // markers: true,
                 },
                 scale: 1,
@@ -159,70 +142,18 @@ onMounted(() => {
             });
         });
     }, document.querySelector("main")); // <- Scope!
-
-    // parallax = gsap.context((self) => {
-    //     const parallaxItems = self.selector(".parallax");
-    //     parallaxItems.forEach((item) => {
-    //         gsap.to(item, {
-    //             y: 150,
-    //             // width: 0,
-    //             scrollTrigger: {
-    //                 trigger: item,
-    //                 start: "top bottom",
-    //                 end: "bottom top",
-    //                 scrub: 1,
-    //                 // markers: true,
-    //             },
-    //         });
-    //     });
-    // }, document.querySelector("main")); // <- Scope!
-
-    //responsive
-    let mm = gsap.matchMedia();
-
-    mm.add("(min-width: 800px)", () => {
-        document.querySelector(".projects-section .title").style.height = 0;
-        parallaxDesktopOnly = gsap.context((self) => {
-            const parallaxItems = self.selector(".parallax-desktop-only");
-            parallaxItems.forEach((item) => {
-                gsap.to(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1,
-                        // markers: true,
-                    },
-                    y: 150,
-                });
-            });
-        }, document.querySelector("main")); // <- Scope!
-    });
-
-    aos = gsap.context((self) => {
-        const aosItems = self.selector(".aos");
-        aosItems.forEach((item) => {
-            gsap.from(item, {
-                x: 100,
-                opacity: 0,
-                scrollTrigger: {
-                    trigger: item,
-                    start: "bottom bottom",
-                    end: () => `+=${item.offsetHeight}`,
-                    scrub: 1,
-                    // markers: true,
-                },
-            });
-        });
-    }, document.querySelector("main")); // <- Scope!
 });
 
 onUnmounted(() => {
-    heroImgParallax.revert(); // <- Easy Cleanup!
-    projectsAnim.revert(); // <- Easy Cleanup!
-    parallax.revert(); // <- Easy Cleanup!
-    parallaxDesktopOnly.revert(); // <- Easy Cleanup!
-    aos.revert(); // <- Easy Cleanup!
+    // Easy Cleanup!
+    // heroBannerParallax.revert();
+    // projectsAnim.revert();
+    // parallax.revert();
+    // parallaxDesktopOnly.revert();
+    // aos.revert();
+    // window.history.scrollRestoration = "manual";
+    // $gsap.ScrollTrigger.clearScrollMemory();
+    ctx.revert();
 });
 </script>
 

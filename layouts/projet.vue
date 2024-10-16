@@ -7,7 +7,7 @@
                 </nav>
             </div>
         </header>
-        <main>
+        <main ref="main">
             <slot />
         </main>
     </div>
