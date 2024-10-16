@@ -34,6 +34,7 @@ export default defineNuxtConfig({
         css: {
             preprocessorOptions: {
                 scss: {
+                    silenceDeprecations: ["legacy-js-api"],
                     additionalData: `
                       @use "@/assets/scss/partials/_variables.scss" as *;
                       @use "@/assets/scss/partials/_mixins.scss" as *;
