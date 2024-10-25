@@ -2,7 +2,7 @@
 title: Parallèle
 link: parallele.ca
 createdAt: 2024-09-05
-timeline: 2022 - 2023
+timeline: 2022-2023
 poste: Designer graphique et web + Développeur web Front-End
 ---
 

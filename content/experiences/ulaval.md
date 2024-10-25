@@ -1,9 +1,9 @@
 ---
-title: Corro-Protec
-link: corroprotec.com
-createdAt: 2024-09-06
-timeline: 2023-2024
-poste: Designer graphique
+title: Université Laval
+link: dprd.ulaval.ca
+createdAt: 2024-11-04
+timeline: 2024-Aujourd'hui
+poste: Chargé de communication et Designer graphique
 ---
 
 -   Création de logos et de marques pour des compagnies et des produits de l’entreprise.
